@@ -20,7 +20,7 @@ public class ShapeDraftman implements ShapeVisitor {
 	private final FontAttributes DEFAULTFONTATTRIBUTES = new FontAttributes();
 	private final int SELECTIONRECTSIZE = 5;
 	
-	private Graphics g;	
+	protected Graphics g;	
 	
 	public ShapeDraftman(Graphics g) {
 		this.g = g;
