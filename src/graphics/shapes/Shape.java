@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import graphics.shapes.attributes.Attributes;
-
+// find the bug
 public abstract class Shape {
 	
 	private Map<String,Attributes> attributes;
