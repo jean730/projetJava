@@ -14,9 +14,7 @@ import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 
 public abstract class Entity extends Shape {
-	
-	//Quelques attributs et fonctions possiblement nécessaires
-	
+		
 	private BufferedImage sprite;
 	private Point loc;
 	
