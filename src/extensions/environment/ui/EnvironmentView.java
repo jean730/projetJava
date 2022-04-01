@@ -9,12 +9,10 @@ import graphics.ui.View;
 public class EnvironmentView extends View {
 
 	private EnvironmentDraftman draftman;
-	private EnvironmentPhysicsman physicsman;
 	private Camera camera = new Camera(getWidth(), getHeight());
 
 	public EnvironmentView(Object model) {
 		super(model);
-		physicsman = new EnvironmentPhysicsman(model);
 	}
 
 	@Override
@@ -26,7 +24,6 @@ public class EnvironmentView extends View {
 	public void paintComponent(Graphics g) {
 		if (getWidth() != camera.getWidth() || getHeight() != camera.getHeight())
 			camera = new Camera(getWidth(), getHeight());
-		physicsman.updateTime();
 		this.camera.setTransform(0, 0, getWidth() / 480.0d, 0);
 		Graphics cameraGraphics = this.camera.graphics();
 		this.draftman = new EnvironmentDraftman(cameraGraphics);
@@ -36,8 +33,6 @@ public class EnvironmentView extends View {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		Shape shape = (Shape) this.getModel();
 		shape.accept(draftman);
-		shape.accept(physicsman);
 		g.drawImage(this.camera.getImage(), 0, 0, null);
-		this.repaint();
 	}
 }

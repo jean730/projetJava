@@ -31,10 +31,10 @@ public class Environment extends JFrame {
 		this.gview = new EnvironmentView(this.model);
 		this.gview.setPreferredSize(new Dimension(480,360));
 		this.getContentPane().add(this.gview, java.awt.BorderLayout.CENTER);
-		this.gview.repaint();
+
 	}
 
-	
+
 	private void buildModel()
 	{
 		this.model = new GameModel(new TileMap());
@@ -46,5 +46,13 @@ public class Environment extends JFrame {
 		Environment self = new Environment();
 		self.pack();
 		self.setVisible(true);
+		self.gameLoop();
+	}
+	
+	private void gameLoop() {
+		while (true) {
+			this.gview.repaint();
+			this.model.applyPhysics();
+		}
 	}
 }
