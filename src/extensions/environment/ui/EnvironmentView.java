@@ -10,10 +10,11 @@ import graphics.ui.View;
 public class EnvironmentView extends View {
 
 	private EnvironmentDraftman draftman;
-	private EnvironmentPhysicsman physicsman = new EnvironmentPhysicsman();
+	private EnvironmentPhysicsman physicsman;
 	
 	public EnvironmentView(Object model) {
 		super(model);
+		physicsman = new EnvironmentPhysicsman(model);
 	}
 
 	@Override

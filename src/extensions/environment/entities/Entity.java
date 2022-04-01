@@ -9,19 +9,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import extensions.environment.EnvironmentVisitor;
+import extensions.environment.TileMap;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 
-public class Entity extends Shape {
+public abstract class Entity extends Shape {
 	
 	//Quelques attributs et fonctions possiblement nécessaires
-	
-	/*private final float GRAVITY; 
-	
-	private Boolean onGround;
-	private Boolean onRoof;
-	private Point2D.Float velocity;
-	public abstract void move();*/
 	
 	private BufferedImage sprite;
 	private Point loc;
@@ -56,4 +50,6 @@ public class Entity extends Shape {
 	public BufferedImage getSprite() {
 		return sprite;
 	}
+
+	public abstract void applyPhysics(TileMap tileMap);
 }
