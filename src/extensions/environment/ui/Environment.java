@@ -2,15 +2,24 @@ package extensions.environment.ui;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+import extensions.environment.Loader;
 import extensions.environment.GameModel;
 import extensions.environment.TileMap;
 import extensions.environment.entities.Player;
 
 public class Environment extends JFrame {
 	
+
+	private TileMap tileMap = new Loader("assets/Level1").getTileMap();
+	private ArrayList<Entity> entities = new ArrayList<>();
+
 	EnvironmentView gview;
 	GameModel model;
 	
