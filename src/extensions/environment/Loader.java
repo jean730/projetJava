@@ -15,7 +15,7 @@ public class Loader {
             e.printStackTrace();
         }
         String tileSet=this.scanner.next();
-        int[][] map={};
+        int[][] map=new int[16][17];
         int i=0;
         int j=0;
         while (this.scanner.hasNext()){
@@ -28,6 +28,6 @@ public class Loader {
             map[i][j]=k;
             j++;
         }
-        //tileMap=new TileMap(tileSet, map);
+        tileMap=new TileMap(tileSet, map);
     }
 }
