@@ -9,4 +9,6 @@ public interface EnvironmentVisitor extends ShapeVisitor {
 
 	public abstract void visitEntity(Entity entity);
 
+	public abstract void visitGameModel(GameModel gameModel);
+
 }

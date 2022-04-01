@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import extensions.environment.EnvironmentVisitor;
+import extensions.environment.GameModel;
 import extensions.environment.TileMap;
 import extensions.environment.entities.Entity;
 import graphics.shapes.ui.ShapeDraftman;
@@ -13,6 +14,14 @@ public class EnvironmentDraftman extends ShapeDraftman implements EnvironmentVis
 
 	public EnvironmentDraftman(Graphics g) {
 		super(g);
+	}
+	
+	@Override
+	public void visitGameModel(GameModel gameModel) {
+		gameModel.getTileMap().accept(this);;
+		for (Entity entity : gameModel.getEntities()) {
+			entity.accept(this);
+		}
 	}
 	
 	public void visitTileMap(TileMap tileMap) {
@@ -33,6 +42,4 @@ public class EnvironmentDraftman extends ShapeDraftman implements EnvironmentVis
 		BufferedImage sprite = entity.getSprite();
 		g.drawImage(sprite, entity.getLoc().x, entity.getLoc().y, entity.getLoc().x + sprite.getWidth(), entity.getLoc().y + sprite.getHeight(), 0, 0, sprite.getWidth(), sprite.getHeight(), null);
 	}
-	
-	
 }

@@ -2,22 +2,17 @@ package extensions.environment.ui;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import extensions.environment.GameModel;
 import extensions.environment.TileMap;
-import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
-import graphics.shapes.SCollection;
 
 public class Environment extends JFrame {
 	
-	private TileMap tileMap = new TileMap();
-	private ArrayList<Entity> entities = new ArrayList<>();
-	
 	EnvironmentView gview;
-	SCollection model;
+	GameModel model;
 	
 	public Environment()
 	{	
@@ -42,11 +37,8 @@ public class Environment extends JFrame {
 	
 	private void buildModel()
 	{
-		this.model = new SCollection();
-		
-		this.model.add(this.tileMap);
-		
-		this.model.add(new Player(new Point(100,100)));
+		this.model = new GameModel(new TileMap());
+		this.model.addEntity(new Player(new Point(100,100)));
 	}
 	
 	public static void main(String[] args)

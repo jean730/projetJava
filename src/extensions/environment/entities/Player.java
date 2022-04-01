@@ -10,7 +10,7 @@ public class Player extends Entity {
 	private final double GRAVITY = 1; 
 	
 	private Boolean onRoof;
-	private Point2D.Float velocity;
+	private Point2D.Float velocity = new Point2D.Float(0,0);
 	
 	public Player(Point loc) {
 		super(loc);

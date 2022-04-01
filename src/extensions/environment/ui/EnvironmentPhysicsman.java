@@ -1,6 +1,7 @@
 package extensions.environment.ui;
 
 import extensions.environment.EnvironmentVisitor;
+import extensions.environment.GameModel;
 import extensions.environment.TileMap;
 import extensions.environment.entities.Entity;
 import graphics.shapes.SCircle;
@@ -13,10 +14,10 @@ public class EnvironmentPhysicsman implements EnvironmentVisitor, ShapeVisitor {
 
 	private long time = System.currentTimeMillis();
 	private long dt = 0;
-	private SCollection model;
+	private GameModel model;
 	
 	public EnvironmentPhysicsman(Object model) {
-		this.model = (SCollection) model;
+		this.model = (GameModel) model;
 	}
 
 	public void updateTime() {
@@ -29,16 +30,19 @@ public class EnvironmentPhysicsman implements EnvironmentVisitor, ShapeVisitor {
         }
 	
 	public void visitRectangle(SRectangle rect) {}
-	public void visitCollection(SCollection collection) {
-		collection.iterator().forEachRemaining((shape)->shape.accept(this));
-	}
+	public void visitCollection(SCollection collection) {}
 	public void visitCircle(SCircle sCircle) {}
 	public void visitText(SText sText) {}
 	public void visitTileMap(TileMap tileMap) {}
-
-	@Override
-	public void visitEntity(Entity entity) {
-		//entity.applyPhysics(); ???
+	public void visitGameModel(GameModel gameModel) {
+		for (Entity entity : gameModel.getEntities()) {
+			entity.accept(this);
+		}
 	}
+
+	public void visitEntity(Entity entity) {
+		entity.applyPhysics(this.model.getTileMap());
+	}
+
 
 }
