@@ -21,7 +21,7 @@ public class EnvironmentDraftman extends ShapeDraftman implements EnvironmentVis
 		for(int i = 0; i<textureMap.length; i++) {
 			for(int j = 0; j<textureMap[i].length; j++) {
 				if (textureMap[i][j] != -1) {
-					Point tileCoord = new Point(tileMap.TILEWIDTH * textureMap[i][j]%tileMap.TILEPERROW,tileMap.TILEWIDTH * ((int)textureMap[i][j]/tileMap.TILEPERROW));
+					Point tileCoord = new Point(tileMap.TILEWIDTH * (textureMap[i][j]%tileMap.TILEPERROW),tileMap.TILEWIDTH * ((int)textureMap[i][j]/tileMap.TILEPERROW));
 					g.drawImage(tileSet, j*tileMap.TILEWIDTH, i*tileMap.TILEWIDTH, tileMap.TILEWIDTH*(1+j) , tileMap.TILEWIDTH*(1+i),tileCoord.x , tileCoord.y, tileCoord.x + tileMap.TILEWIDTH , tileCoord.y + tileMap.TILEWIDTH, null);
 				}
 			}

@@ -34,7 +34,7 @@ public class Environment extends JFrame {
 		this.buildModel();
 		
 		this.gview = new EnvironmentView(this.model);
-		this.gview.setPreferredSize(new Dimension(300,300));
+		this.gview.setPreferredSize(new Dimension(480,360));
 		this.getContentPane().add(this.gview, java.awt.BorderLayout.CENTER);
 		this.gview.repaint();
 	}

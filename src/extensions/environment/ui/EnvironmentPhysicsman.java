@@ -23,6 +23,10 @@ public class EnvironmentPhysicsman implements EnvironmentVisitor, ShapeVisitor {
 		this.dt = this.time - System.currentTimeMillis();
 		this.time = System.currentTimeMillis();		
 	}
+
+        public long getDT(){
+            return this.dt;
+        }
 	
 	public void visitRectangle(SRectangle rect) {}
 	public void visitCollection(SCollection collection) {
