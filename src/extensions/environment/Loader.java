@@ -8,7 +8,7 @@ public class Loader {
     private Scanner scanner;
     private TileMap tileMap;
 
-    Loader(String path){
+    public Loader(String path){
         try {
             this.scanner=new Scanner(new File(path));
         } catch (FileNotFoundException e) {
@@ -29,5 +29,9 @@ public class Loader {
             j++;
         }
         tileMap=new TileMap(tileSet, map);
+    }
+
+    public TileMap getTileMap() {
+        return tileMap;
     }
 }
