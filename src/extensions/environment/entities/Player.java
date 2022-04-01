@@ -18,16 +18,17 @@ public class Player extends Entity {
 
 	@Override
 	public void applyPhysics(TileMap tileMap) {
-		System.out.println(this.getLoc().x+" "+this.getLoc().y);
-		if(onGround(tileMap))
-			velocity.setLocation(velocity.x, velocity.y+GRAVITY);
-		this.translate((int) velocity.x, (int) velocity.y);
+		velocity.setLocation(velocity.x, velocity.y+GRAVITY);
+		if(!onGround(tileMap))
+			this.translate(velocity.x, velocity.y);
+		else
+			velocity.setLocation(0, 0);
 	}
 
 	public Boolean onGround(TileMap tileMap)
 	{
-		int x = this.getLoc().x;
-		int y = this.getLoc().y;
-		return tileMap.getTextureMap()[x/tileMap.TILEWIDTH][y/tileMap.TILEWIDTH] > 0;
+		float x = this.getLoc().x+velocity.x;
+		float y = this.getLoc().y+velocity.y;
+		return tileMap.getTextureMap()[(int) (y/tileMap.TILEWIDTH)+1][(int) (x/tileMap.TILEWIDTH)+1] >= 0;
 	}
 }

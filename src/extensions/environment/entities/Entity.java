@@ -48,6 +48,13 @@ public abstract class Entity extends Shape {
 	public BufferedImage getSprite() {
 		return sprite;
 	}
+	
+	public void translate(float dx, float dy)
+	{
+		Point point = new Point();
+		point.setLocation(this.getLoc().x+dx, this.getLoc().y+dy);
+		this.setLoc(point);
+	}
 
 	public abstract void applyPhysics(TileMap tileMap);
 }
