@@ -14,6 +14,20 @@ public class Loader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        String tileSet=this.scanner.next();
+        int[][] map={};
+        int i=0;
+        int j=0;
+        while (this.scanner.hasNext()){
+            int k=this.scanner.nextInt();
+            if (k==-2){
+                i++;
+                j=0;
+                continue;
+            }
+            map[i][j]=k;
+            j++;
+        }
+        //tileMap=new TileMap(tileSet, map);
     }
 }
