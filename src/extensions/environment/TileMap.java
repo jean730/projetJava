@@ -40,7 +40,16 @@ public class TileMap extends Shape{
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		this.TILEWIDTH = (int) this.tileSet.getWidth()/TILEPERROW;
+		this.TILEWIDTH = this.tileSet.getWidth()/TILEPERROW;
+	}
+	public TileMap(String path, int[][] map){
+		try {
+			this.tileSet = ImageIO.read(new File(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.textureMap=map;
+		this.TILEWIDTH = this.tileSet.getWidth()/TILEPERROW;
 	}
 	
 	public BufferedImage getTileSet() {
