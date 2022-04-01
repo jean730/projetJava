@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import extensions.environment.Loader;
 import extensions.environment.GameModel;
 import extensions.environment.TileMap;
+import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
 
 public class Environment extends JFrame {
