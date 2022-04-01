@@ -4,9 +4,11 @@ import java.awt.Color;
 
 public class ColorAttributes extends Attributes {
 
+	public static String ID = "color";
+	
 	@Override
 	public String getId() {
-		return "color";
+		return ID;
 	}
 	
 	public Boolean filled;

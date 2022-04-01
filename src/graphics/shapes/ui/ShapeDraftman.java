@@ -29,14 +29,14 @@ public class ShapeDraftman implements ShapeVisitor {
 	@Override
 	public void visitCollection(SCollection sCollection) {
 		sCollection.iterator().forEachRemaining((shape)->shape.accept(this));
-		SelectionAttributes selectionAttributes = (SelectionAttributes) sCollection.getAttributes().get("selection");
+		SelectionAttributes selectionAttributes = (SelectionAttributes) sCollection.getAttributes().get(SelectionAttributes.ID);
 		if (selectionAttributes != null && selectionAttributes.isSelected()) drawSelectionSquares(sCollection.getBounds());
 	}
 	
 	@Override
 	public void visitRectangle(SRectangle sRect) {
 		Rectangle rect = sRect.getRect();
-		ColorAttributes color = (ColorAttributes) sRect.getAttributes().get("color");
+		ColorAttributes color = (ColorAttributes) sRect.getAttributes().get(ColorAttributes.ID);
 		if (color == null) color = DEFAULTCOLORATTRIBUTES; 
 		if (color.filled) {
 			g.setColor(color.filledColor);
@@ -46,7 +46,7 @@ public class ShapeDraftman implements ShapeVisitor {
 			g.setColor(color.strockedColor);
 			g.drawRect(rect.x, rect.y, rect.width, rect.height);
 		}
-		SelectionAttributes selectionAttributes = (SelectionAttributes) sRect.getAttributes().get("selection");
+		SelectionAttributes selectionAttributes = (SelectionAttributes) sRect.getAttributes().get(SelectionAttributes.ID);
 		if (selectionAttributes != null && selectionAttributes.isSelected()) drawSelectionSquares(sRect.getBounds());
 	}
 
@@ -54,7 +54,7 @@ public class ShapeDraftman implements ShapeVisitor {
 	public void visitCircle(SCircle sCircle) {
 		int radius = sCircle.getRadius();
 		Point loc = sCircle.getLoc();
-		ColorAttributes color = (ColorAttributes) sCircle.getAttributes().get("color");
+		ColorAttributes color = (ColorAttributes) sCircle.getAttributes().get(ColorAttributes.ID);
 		if (color == null) color = DEFAULTCOLORATTRIBUTES; 
 		if (color.filled) {
 			g.setColor(color.filledColor);
@@ -64,7 +64,7 @@ public class ShapeDraftman implements ShapeVisitor {
 			g.setColor(color.strockedColor);
 			g.drawOval(loc.x-radius, loc.y-radius, 2*radius, 2*radius);
 		}
-		SelectionAttributes selectionAttributes = (SelectionAttributes) sCircle.getAttributes().get("selection");
+		SelectionAttributes selectionAttributes = (SelectionAttributes) sCircle.getAttributes().get(SelectionAttributes.ID);
 		if (selectionAttributes != null && selectionAttributes.isSelected()) drawSelectionSquares(sCircle.getBounds());
 	}
 
@@ -72,9 +72,9 @@ public class ShapeDraftman implements ShapeVisitor {
 	public void visitText(SText sText) {
 		Point loc = sText.getLoc();
 		Rectangle rect = sText.getBounds();
-		FontAttributes fontAttributes = (FontAttributes)sText.getAttributes().get("font");
+		FontAttributes fontAttributes = (FontAttributes)sText.getAttributes().get(FontAttributes.ID);
 		if (fontAttributes == null) fontAttributes = DEFAULTFONTATTRIBUTES;
-		ColorAttributes color = (ColorAttributes) sText.getAttributes().get("color");
+		ColorAttributes color = (ColorAttributes) sText.getAttributes().get(ColorAttributes.ID);
 		if (color == null) color = DEFAULTCOLORATTRIBUTES; 
 		if (color.filled) {
 			g.setColor(color.filledColor);
@@ -87,7 +87,7 @@ public class ShapeDraftman implements ShapeVisitor {
 		g.setFont(fontAttributes.getFont());
 		g.setColor(fontAttributes.fontColor);
 		g.drawString(sText.getText(), loc.x, loc.y + rect.height);
-		SelectionAttributes selectionAttributes = (SelectionAttributes) sText.getAttributes().get("selection");
+		SelectionAttributes selectionAttributes = (SelectionAttributes) sText.getAttributes().get(SelectionAttributes.ID);
 		if (selectionAttributes != null && selectionAttributes.isSelected()) drawSelectionSquares(sText.getBounds());
 	}
 	

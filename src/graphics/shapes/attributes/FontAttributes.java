@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 public class FontAttributes extends Attributes {
 
+	public static String ID = "font";
+	
 	private Font font;
 	public Color fontColor;
 	private FontMetrics metrics;
@@ -30,7 +32,7 @@ public class FontAttributes extends Attributes {
 	
 	@Override
 	public String getId() {
-		return "font";
+		return ID;
 	}
 	
 	public Rectangle getBounds(String string) {
