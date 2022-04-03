@@ -47,7 +47,7 @@ public class Player extends Entity {
 			if(!onGround(tileMap, x, y+dy-tileMap.TILEWIDTH))
 				this.translate(0, -1);
 			else
-				velocity.setLocation(velocity.x, 0);
+				velocity.setLocation(velocity.x, GRAVITY);
 		}
 	}
 
