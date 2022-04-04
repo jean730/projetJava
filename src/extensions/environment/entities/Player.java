@@ -33,6 +33,7 @@ public class Player extends Entity {
 					this.DoubleTranslate(0.0, 1.0);
 			}
 		}
+<<<<<<< HEAD
 	}
 	
 	public Point2D.Double nextLoc(double dt) {
@@ -47,6 +48,28 @@ public class Player extends Entity {
 		} catch (Exception e) {
 			this.die();
 			return true;
+=======
+		for(float dx = 0; dx > velocity.x; dx = dx-1) //vitesse en x négative
+		{
+			if(!onGround(tileMap, x+dx-tileMap.TILEWIDTH, y))
+				this.translate(-1, 0);
+			else
+				velocity.setLocation(0, velocity.y);
+		}
+		for(float dy = 0; dy < velocity.y; dy = dy+1) //vitesse en y positive
+		{
+			if(!onGround(tileMap, x, y+dy+tileMap.TILEWIDTH))
+				this.translate(0, 1);
+			else
+				velocity.setLocation(velocity.x, 0);
+		}
+		for(float dy = 0; dy > velocity.y; dy = dy-1) //vitesse en y négative
+		{
+			if(!onGround(tileMap, x, y+dy-tileMap.TILEWIDTH))
+				this.translate(0, -1);
+			else
+				velocity.setLocation(velocity.x, GRAVITY);
+>>>>>>> 547907fc5891838333445a3aaeaaf59e6d20a68b
 		}
 	}
 
