@@ -2,6 +2,7 @@ package extensions.environment.ui;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class Environment extends JFrame {
 	private void buildModel()
 	{
 		this.model = new GameModel(new TileMap());
-		this.model.addEntity(new Player(new Point(100,100)));
+		this.model.addEntity(new Player(new Point2D.Double(100,100)));
 	}
 	
 	public static void main(String[] args)
@@ -56,6 +57,11 @@ public class Environment extends JFrame {
 		Environment self = new Environment();
 		self.pack();
 		self.setVisible(true);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		self.gameLoop();
 	}
 	

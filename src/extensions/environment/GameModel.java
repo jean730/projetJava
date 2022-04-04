@@ -10,8 +10,8 @@ import graphics.shapes.ShapeVisitor;
 
 public class GameModel extends Shape {
 	
-	private long time = System.currentTimeMillis();
-	private long dt = 0;
+	private long time = System.nanoTime();
+	private double dt;
 	private GameModel model;
 	
 	private TileMap tileMap = new TileMap();
@@ -22,8 +22,8 @@ public class GameModel extends Shape {
 	}
 
 	public void updateTime() {
-		this.dt = this.time - System.currentTimeMillis();
-		this.time = System.currentTimeMillis();		
+		this.dt = ((double)(System.nanoTime() - this.time))/1000000000;
+		this.time = System.nanoTime();		
 	}
 
 	public TileMap getTileMap() {
@@ -47,11 +47,8 @@ public class GameModel extends Shape {
 	}
 	
 	public void applyPhysics() {
-
 		this.updateTime();
-		for (Entity entity : entities) {
-			entity.applyPhysics(tileMap);
-		}
+		entities.forEach((entity) -> entity.applyPhysics(tileMap , dt));
 	}
 	
 	@Override
@@ -73,7 +70,7 @@ public class GameModel extends Shape {
 		((EnvironmentVisitor) visitor).visitGameModel(this);;
 	}
 
-	public long getDt() {
+	public double getDt() {
 		return dt;
 	}
 }
