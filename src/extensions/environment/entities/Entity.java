@@ -2,6 +2,7 @@ package extensions.environment.entities;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,25 +17,37 @@ import graphics.shapes.ShapeVisitor;
 public abstract class Entity extends Shape {
 		
 	private BufferedImage sprite;
-	private Point loc;
+	private Point2D.Double doubleLoc;
 	
-	public Entity(Point loc) {
+	public Entity(Point2D.Double doubleLoc) {
 		try {
 		    this.sprite = ImageIO.read(new File("assets/Sprites/ptitbonhome.png"));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		this.loc = loc;
+		this.doubleLoc = doubleLoc;
 	}
 	
 	@Override
 	public Point getLoc() {
-		return this.loc;
+		return new Point((int)this.doubleLoc.x,(int)this.doubleLoc.y);
 	}
 
 	@Override
 	public void setLoc(Point point) {
-		this.loc = point;
+		this.doubleLoc = new Point2D.Double(this.doubleLoc.x,this.doubleLoc.y);
+	}
+	
+	public Point2D.Double getDoubleLoc() {
+		return doubleLoc;
+	}
+	
+	public void setDoubleLoc(Point2D.Double doubleLoc) {
+		this.doubleLoc = doubleLoc;
+	}
+
+	public void DoubleTranslate(Double dx, Double dy) {
+		this.doubleLoc.setLocation(this.doubleLoc.x + dx, this.doubleLoc.y + dy);
 	}
 	
 	public Rectangle getBounds() {
@@ -48,13 +61,6 @@ public abstract class Entity extends Shape {
 	public BufferedImage getSprite() {
 		return sprite;
 	}
-	
-	public void translate(float dx, float dy)
-	{
-		Point point = new Point();
-		point.setLocation(this.getLoc().x+dx, this.getLoc().y+dy);
-		this.setLoc(point);
-	}
 
-	public abstract void applyPhysics(TileMap tileMap);
+	public abstract void applyPhysics(TileMap tileMap, double dt);
 }
