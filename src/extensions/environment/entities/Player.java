@@ -28,7 +28,7 @@ public class Player extends Entity {
 			else
 				velocity.setLocation(0, velocity.y);
 		}
-		for(float dx = 0; dx > velocity.x; dx = dx-1) //vitesse en x nÈgative
+		for(float dx = 0; dx > velocity.x; dx = dx-1) //vitesse en x n√©gative
 		{
 			if(!onGround(tileMap, x+dx-tileMap.TILEWIDTH, y))
 				this.translate(-1, 0);
@@ -42,7 +42,7 @@ public class Player extends Entity {
 			else
 				velocity.setLocation(velocity.x, 0);
 		}
-		for(float dy = 0; dy > velocity.y; dy = dy-1) //vitesse en y nÈgative
+		for(float dy = 0; dy > velocity.y; dy = dy-1) //vitesse en y n√©gative
 		{
 			if(!onGround(tileMap, x, y+dy-tileMap.TILEWIDTH))
 				this.translate(0, -1);
