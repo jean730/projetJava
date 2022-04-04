@@ -15,7 +15,7 @@ public class Loader {
             e.printStackTrace();
         }
         String tileSet=this.scanner.next();
-        int[][] map=new int[16][17];
+        int[][] map=new int[this.scanner.nextInt()][this.scanner.nextInt()];
         int i=0;
         int j=0;
         while (this.scanner.hasNext()){
