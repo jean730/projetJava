@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
+import extensions.environment.audio.Audio;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 
@@ -16,6 +17,7 @@ public class GameModel extends Shape {
 	private TileMap tileMap;
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private ArrayList<Player> players = new ArrayList<>();
+	private Audio audio = new Audio();
 	
 	public GameModel(TileMap tileMap) {
 		this.tileMap = tileMap;
@@ -32,6 +34,10 @@ public class GameModel extends Shape {
 
 	public void setTileMap(TileMap tileMap) {
 		this.tileMap = tileMap;
+	}
+
+	public Audio getAudio() {
+		return audio;
 	}
 
 	public ArrayList<Entity> getEntities() {

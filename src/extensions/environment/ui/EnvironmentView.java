@@ -36,5 +36,6 @@ public class EnvironmentView extends View {
 		Shape shape = (Shape) this.getModel();
 		shape.accept(draftman);
 		g.drawImage(this.camera.getImage(), 0, 0, null);
+                repaint();
 	}
 }

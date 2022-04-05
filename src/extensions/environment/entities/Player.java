@@ -4,16 +4,18 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import extensions.environment.TileMap;
+import extensions.environment.GameModel;
 
 public class Player extends Entity {
 	
 	private final double GRAVITY = 1000;
 	private final int JUMPSTRENGTH = 400;
-	
+	private GameModel gameModel;
 	private Point2D.Double velocity = new Point2D.Double(0,0);	
 	
-	public Player(Point2D.Double loc) {
+	public Player(Point2D.Double loc,GameModel gameModel) {
 		super(loc);
+                this.gameModel = gameModel;
 	}
 	
 	@Override
@@ -79,6 +81,7 @@ public class Player extends Entity {
 	
 	private void jump() {
 		this.velocity.y = -JUMPSTRENGTH;
+		this.gameModel.getAudio().play("jump");
 	}
 
 	public void conditionalJumpFunctionToJumpOnlyOnGround(TileMap tileMap) {
