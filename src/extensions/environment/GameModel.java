@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import extensions.environment.entities.Entity;
+import extensions.environment.entities.Player;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 
@@ -12,10 +13,9 @@ public class GameModel extends Shape {
 	
 	private long time = System.nanoTime();
 	private double dt;
-	private GameModel model;
-	
-	private TileMap tileMap = new TileMap();
+	private TileMap tileMap;
 	private ArrayList<Entity> entities = new ArrayList<>();
+	private ArrayList<Player> players = new ArrayList<>();
 	
 	public GameModel(TileMap tileMap) {
 		this.tileMap = tileMap;
@@ -23,7 +23,7 @@ public class GameModel extends Shape {
 
 	public void updateTime() {
 		this.dt = ((double)(System.nanoTime() - this.time))/1000000000;
-		this.time = System.nanoTime();		
+		this.time = System.nanoTime();
 	}
 
 	public TileMap getTileMap() {
@@ -37,6 +37,10 @@ public class GameModel extends Shape {
 	public ArrayList<Entity> getEntities() {
 		return entities;
 	}
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
 
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
@@ -44,6 +48,10 @@ public class GameModel extends Shape {
 	
 	public void addEntity(Entity entity) {
 		entities.add(entity);
+	}
+	
+	public void addPlayer(Player player) {
+		players.add(player);
 	}
 	
 	public void applyPhysics() {

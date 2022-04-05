@@ -13,6 +13,8 @@ public class EnvironmentView extends View {
 
 	public EnvironmentView(Object model) {
 		super(model);
+		this.setFocusable(true);
+		this.requestFocusInWindow();
 	}
 
 	@Override

@@ -7,17 +7,20 @@ import extensions.environment.TileMap;
 
 public class Player extends Entity {
 	
-	private final double GRAVITY = 0.01;
-	private Point2D.Double velocity = new Point2D.Double(0,0);
+	private final double GRAVITY = 1000;
+	private final int JUMPSTRENGTH = 400;
+	
+	private Point2D.Double velocity = new Point2D.Double(0,0);	
 	
 	public Player(Point2D.Double loc) {
 		super(loc);
 	}
-
+	
 	@Override
 	public void applyPhysics(TileMap tileMap, double dt) {
 		Point2D.Double doubleLoc = this.getDoubleLoc();
-		velocity.setLocation(velocity.x, velocity.y+GRAVITY);
+		if (!onGround(tileMap, doubleLoc))
+			velocity.setLocation(velocity.x, velocity.y+GRAVITY*dt);
 		Point2D.Double nextLoc = nextLoc(dt);
 		if (velocity.y > 0) {
 			if (!onGround(tileMap,nextLoc)) {
@@ -72,5 +75,13 @@ public class Player extends Entity {
 
 	public void die() {
 	
+	}
+	
+	private void jump() {
+		this.velocity.y = -JUMPSTRENGTH;
+	}
+
+	public void conditionalJumpFunctionToJumpOnlyOnGround(TileMap tileMap) {
+		if (onGround(tileMap,this.getDoubleLoc())) this.jump();
 	}
 }

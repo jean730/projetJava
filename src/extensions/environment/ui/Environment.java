@@ -1,27 +1,17 @@
 package extensions.environment.ui;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 
-import extensions.environment.Loader;
 import extensions.environment.GameModel;
+import extensions.environment.Loader;
 import extensions.environment.TileMap;
-import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
 
 public class Environment extends JFrame {
 	
-
-	private TileMap tileMap = new Loader("assets/Level1").getTileMap();
-	private ArrayList<Entity> entities = new ArrayList<>();
-
 	EnvironmentView gview;
 	GameModel model;
 	
@@ -48,8 +38,10 @@ public class Environment extends JFrame {
 
 	private void buildModel()
 	{
-		this.model = new GameModel(new TileMap());
-		this.model.addEntity(new Player(new Point2D.Double(100,100)));
+		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
+		Player p = new Player(new Point2D.Double(100,100));
+		this.model.addEntity(p);
+		this.model.addPlayer(p);
 	}
 	
 	public static void main(String[] args)
