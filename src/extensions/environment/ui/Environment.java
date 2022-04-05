@@ -48,7 +48,7 @@ public class Environment extends JFrame {
 
 	private void buildModel()
 	{
-		this.model = new GameModel(new TileMap());
+		this.model = new GameModel(this.tileMap);
 		this.model.addEntity(new Player(new Point2D.Double(100,100)));
 	}
 	
