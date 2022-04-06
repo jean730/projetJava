@@ -1,5 +1,6 @@
 package extensions.environment.entities;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -90,7 +91,8 @@ public class Player extends Entity {
 
 	public void applyColisions(){
 		for(Entity e:this.gameModel.getEntities()){
-			if (this.getBounds().intersects(e.getBounds()) && e!=this) System.out.println("Collsion!");
+			Rectangle inter = this.getBounds().intersection(e.getBounds());
+			if (!inter.isEmpty() && e!=this && inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die();
 		}
 	}
 }

@@ -18,6 +18,7 @@ public abstract class Entity extends Shape {
 		
 	private BufferedImage sprite;
 	private Point2D.Double doubleLoc;
+
 	
 	public Entity(Point2D.Double doubleLoc, String path) {
 		try {
@@ -63,4 +64,6 @@ public abstract class Entity extends Shape {
 	}
 
 	public abstract void applyPhysics(TileMap tileMap, double dt);
+
+	public abstract void die();
 }
