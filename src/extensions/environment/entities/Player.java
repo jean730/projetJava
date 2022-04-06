@@ -14,7 +14,7 @@ public class Player extends Entity {
 	private Point2D.Double velocity = new Point2D.Double(0,0);	
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
-		super(loc);
+		super(loc,"assets/Sprites/ptitbonhome.png");
         this.gameModel = gameModel;
 	}
 	
