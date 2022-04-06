@@ -42,7 +42,7 @@ public class Player extends Entity {
 			}
 			else {
 				this.velocity.y = 0;
-				this.setDoubleLoc(new Point2D.Double(doubleLoc.x,Math.ceil(doubleLoc.y)));
+				this.setDoubleLoc(new Point2D.Double(doubleLoc.x,Math.floor(doubleLoc.y)));
 				doubleLoc = this.getDoubleLoc();
 				while (!onRoof(tileMap,doubleLoc))
 					this.DoubleTranslate(0.0, -1.0);
@@ -68,7 +68,7 @@ public class Player extends Entity {
 	public Boolean onRoof(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)-1][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
+			return tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
 		} catch (Exception e) {
 			this.die();
 			return true;
