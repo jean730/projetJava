@@ -15,7 +15,7 @@ public class Player extends Entity {
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
 		super(loc);
-                this.gameModel = gameModel;
+        this.gameModel = gameModel;
 	}
 	
 	@Override

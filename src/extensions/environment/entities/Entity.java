@@ -19,9 +19,9 @@ public abstract class Entity extends Shape {
 	private BufferedImage sprite;
 	private Point2D.Double doubleLoc;
 	
-	public Entity(Point2D.Double doubleLoc) {
+	public Entity(Point2D.Double doubleLoc, String path) {
 		try {
-		    this.sprite = ImageIO.read(new File("assets/Sprites/ptitbonhome.png"));
+		    this.sprite = ImageIO.read(new File(path));
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

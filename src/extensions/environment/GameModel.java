@@ -81,7 +81,7 @@ public class GameModel extends Shape {
 
 	@Override
 	public void accept(ShapeVisitor visitor) {
-		((EnvironmentVisitor) visitor).visitGameModel(this);;
+		((EnvironmentVisitor) visitor).visitGameModel(this);
 	}
 
 	public double getDt() {
