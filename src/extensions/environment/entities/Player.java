@@ -14,7 +14,7 @@ public class Player extends Entity {
 	private Point2D.Double velocity = new Point2D.Double(0,0);	
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
-		super(loc);
+		super(loc,"assets/Sprites/ptitbonhome.png");
         this.gameModel = gameModel;
 	}
 	
@@ -86,5 +86,11 @@ public class Player extends Entity {
 
 	public void conditionalJumpFunctionToJumpOnlyOnGround(TileMap tileMap) {
 		if (onGround(tileMap,this.getDoubleLoc())) this.jump();
+	}
+
+	public void applyColisions(){
+		for(Entity e:this.gameModel.getEntities()){
+			if (this.getBounds().intersects(e.getBounds()) && e!=this) System.out.println("Collsion!");
+		}
 	}
 }
