@@ -42,6 +42,11 @@ public class Environment extends JFrame {
 		Player p = new Player(new Point2D.Double(100,100), this.model);
 		this.model.addEntity(p);
 		this.model.addPlayer(p);
+		/* Test pour les colisions
+		Player q = new Player(new Point2D.Double(100,50),this.model);
+		this.model.addEntity(q);
+		this.model.addPlayer(q);
+		*/
 	}
 	
 	public static void main(String[] args)

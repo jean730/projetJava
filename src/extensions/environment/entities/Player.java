@@ -61,7 +61,7 @@ public class Player extends Entity {
 		try {
 			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
 		} catch (Exception e) {
-			this.die();
+			//this.die();
 			return true;
 		}
 	}
@@ -71,13 +71,13 @@ public class Player extends Entity {
 		try {
 			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)-1][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
 		} catch (Exception e) {
-			this.die();
+			//this.die();
 			return true;
 		}
 	}
 
 	public void die() {
-	
+		System.out.println(this.toString()+" est mort!");
 	}
 	
 	private void jump() {
