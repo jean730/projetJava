@@ -92,7 +92,10 @@ public class Player extends Entity {
 	public void applyColisions(){
 		for(Entity e:this.gameModel.getEntities()){
 			Rectangle inter = this.getBounds().intersection(e.getBounds());
-			if (!inter.isEmpty() && e!=this && inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die();
+			if (!inter.isEmpty() && e!=this) {
+				System.out.println("Colision avec "+e.toString());
+				if (inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die(); else this.die();
+			}
 		}
 	}
 }
