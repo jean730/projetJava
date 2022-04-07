@@ -61,7 +61,7 @@ public class Player extends Entity {
 		try {
 			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
 		} catch (Exception e) {
-			//this.die();
+			this.die();
 			return true;
 		}
 	}
@@ -71,13 +71,15 @@ public class Player extends Entity {
 		try {
 			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)-1][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
 		} catch (Exception e) {
-			//this.die();
+			this.die();
 			return true;
 		}
 	}
 
+	@Override
 	public void die() {
-		System.out.println(this.toString()+" est mort!");
+		//System.out.println(this.toString()+" est mort!");
+		//System.exit(1);
 	}
 	
 	private void jump() {
@@ -93,7 +95,7 @@ public class Player extends Entity {
 		for(Entity e:this.gameModel.getEntities()){
 			Rectangle inter = this.getBounds().intersection(e.getBounds());
 			if (!inter.isEmpty() && e!=this) {
-				System.out.println("Colision avec "+e.toString());
+				//System.out.println("Colision avec "+e.toString());
 				if (inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die(); else this.die();
 			}
 		}
