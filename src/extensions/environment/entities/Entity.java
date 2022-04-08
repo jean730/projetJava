@@ -26,12 +26,8 @@ public abstract class Entity extends Shape {
             this.sprite = sprite;
             this.doubleLoc = doubleLoc;
 	}
-	public Entity(Point2D.Double doubleLoc, String path, boolean isColisionable){
-		try {
-			this.sprite = ImageIO.read(new File(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public Entity(Point2D.Double doubleLoc, Sprite sprite, boolean isColisionable){
+		this.sprite = sprite;
 		this.doubleLoc = doubleLoc;
 		this.isColisionable=isColisionable;
 	}

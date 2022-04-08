@@ -1,6 +1,7 @@
 package extensions.environment;
 
 import extensions.environment.entities.Entity;
+import extensions.environment.ui.Sprite;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -11,7 +12,7 @@ public class Enemy extends Entity {
     private Point2D.Double velocity = new Point2D.Double(0,0);
 
     public Enemy(Point2D.Double loc,GameModel gameModel) {
-        super(loc,"assets/Sprites/ptitbonhome_inverted.png");
+        super(loc, new Sprite("assets/Sprites/ptitbonhome_inverted.png"));
         this.gameModel = gameModel;
     }
 
