@@ -34,7 +34,9 @@ public class Player extends Entity {
 	public Player(Point2D.Double loc,GameModel gameModel) {
             super(loc);
             this.sprite = new Sprite("assets/Player/Player.png");
-            sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,200));
+            sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,140));
+            sprite.registerAnimation("left",new Animation(16,16,128,256,8,4,140));
+            sprite.registerAnimation("right",new Animation(16,16,128,256,16,4,140));
             sprite.setAnimation("idle");
             this.gameModel = gameModel;
 	}
@@ -170,6 +172,17 @@ public class Player extends Entity {
 
 	public void walk(double dt) {
                 walkingDirection = Right-Left;
+                switch(walkingDirection){
+                    case(-1):{
+                        sprite.setAnimation("left");
+                    }
+                    case(1):{
+                        sprite.setAnimation("right");
+                    }
+                    case(0):{
+                        sprite.setAnimation("idle");
+                    }
+                }
 		double factor = (1 + SPRINTFACTOR*(this.isSprinting? 1 : 0)) ;
 		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * walkingDirection;
 		double absv = Math.abs(velocity.x);
