@@ -53,11 +53,6 @@ public class Environment extends JFrame {
 		Environment self = new Environment();
 		self.pack();
 		self.setVisible(true);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		self.gameLoop();
 	}
 	
