@@ -5,17 +5,22 @@ import java.util.ArrayList;
 
 import extensions.environment.TileMap;
 import extensions.environment.GameModel;
+import extensions.environment.ui.Sprite;
+import extensions.environment.ui.Animation;
 
 public class Player extends Entity {
 	
-	private final double GRAVITY = -20;
-	private final int JUMPSTRENGTH = 400;
+	private final double GRAVITY = 200;
+	private final int JUMPSTRENGTH = 200;
 	private GameModel gameModel;
 	private Point2D.Double velocity = new Point2D.Double(-2,0);	
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
-		super(loc,"assets/Sprites/ptitbonhome.png");
-        this.gameModel = gameModel;
+            super(loc);
+            this.sprite = new Sprite("assets/Player/Player.png");
+            sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,200));
+            sprite.setAnimation("idle");
+            this.gameModel = gameModel;
 	}
 	
 	@Override
