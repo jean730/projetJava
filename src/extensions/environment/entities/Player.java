@@ -47,30 +47,22 @@ public class Player extends Entity {
 				velocity.x = 0;
 		}
 		Point2D.Double nextLoc = nextLoc(dt);
-		/*if (velocity.x > 0) {
-			if (!onWallRight(tileMap,nextLoc)) {
-				this.setDoubleLoc(nextLoc);
-			}
-			else {
+		if (velocity.x > 0) {
+			if (onWallRight(tileMap,nextLoc)) {
 				this.velocity.x = 0;
-				this.setDoubleLoc(new Point2D.Double(Math.ceil(doubleLoc.x),doubleLoc.y));
-				doubleLoc = this.getDoubleLoc();
-				while (!onWallRight(tileMap,doubleLoc))
-					this.DoubleTranslate(1.0, 0.0);
+				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),doubleLoc.y);
+				while (!onWallRight(tileMap,nextLoc))
+					nextLoc.x += 1.0;
 			}
 		}
 		else if (velocity.x < 0) {
-			if (!onWallLeft(tileMap,nextLoc)) {
-				this.setDoubleLoc(nextLoc);
-			}
-			else {
+			if (onWallLeft(tileMap,nextLoc)) {
 				this.velocity.x = 0;
-				this.setDoubleLoc(new Point2D.Double(Math.floor(doubleLoc.x),doubleLoc.y));
-				doubleLoc = this.getDoubleLoc();
-				while (!onWallLeft(tileMap,doubleLoc))
-					this.DoubleTranslate(-1.0, 0.0);
+				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),doubleLoc.y);
+				while (!onWallLeft(tileMap,nextLoc))
+					nextLoc.x -= 1.0;
 			}
-		}*/
+		}
 		if (velocity.y > 0) {
 			if (onGround(tileMap,nextLoc)) {
 				this.velocity.y = 0;
