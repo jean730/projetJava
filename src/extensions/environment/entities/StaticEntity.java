@@ -15,4 +15,5 @@ public class StaticEntity extends Entity {
 
         @Override
         public void applyPhysics(TileMap tileMap, double dt){}
+        public void die(){}
 }
