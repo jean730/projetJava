@@ -9,7 +9,7 @@ import extensions.environment.Enemy;
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
 import extensions.environment.TileMap;
-import extensions.environment.entities.Player;
+import extensions.environment.entities.*;
 
 public class Environment extends JFrame {
 	
@@ -41,7 +41,11 @@ public class Environment extends JFrame {
 	{
 		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
 		Player p = new Player(new Point2D.Double(100,100), this.model);
+                StaticEntity fire = new StaticEntity(new Point2D.Double(100,192),"assets/Details/fire.png"); // Entité de test
+                fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
+                fire.getSprite().setAnimation("default");
 		this.model.addEntity(p);
+		this.model.addEntity(fire);
 		this.model.addPlayer(p);
 		//Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
 		//this.model.addEntity(q);
