@@ -63,6 +63,7 @@ public class GameModel extends Shape {
 	public void applyPhysics() {
 		this.updateTime();
 		entities.forEach((entity) -> entity.applyPhysics(tileMap , dt));
+		players.forEach((player)->player.applyColisions());
 	}
 	
 	@Override
