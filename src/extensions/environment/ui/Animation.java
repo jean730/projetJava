@@ -48,7 +48,7 @@ public class Animation{
     }
 
     public int getY(){
-        return (((currentFrame+start)/(imageHeight/height)))*height;
+        return (((currentFrame+start)/(imageWidth/width)))*height;
     }
 
 
