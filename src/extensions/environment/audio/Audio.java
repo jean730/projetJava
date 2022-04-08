@@ -11,6 +11,7 @@ public class Audio{
     private Hashtable<String,Clip> sounds = new Hashtable<>();
     public Audio(){
        loadAudio("assets/Audio/jump.wav","jump"); 
+       loadAudio("assets/Audio/background.wav","background"); 
     }
 
     public void loadAudio(String fileName,String ressourceName){
