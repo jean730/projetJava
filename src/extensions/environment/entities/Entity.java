@@ -19,10 +19,21 @@ public abstract class Entity extends Shape {
 		
 	protected Sprite sprite;
 	private Point2D.Double doubleLoc;
+	private boolean isColisionable=true;
+
 	
 	public Entity(Point2D.Double doubleLoc, Sprite sprite) {
             this.sprite = sprite;
             this.doubleLoc = doubleLoc;
+	}
+	public Entity(Point2D.Double doubleLoc, String path, boolean isColisionable){
+		try {
+			this.sprite = ImageIO.read(new File(path));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.doubleLoc = doubleLoc;
+		this.isColisionable=isColisionable;
 	}
 	
 	public Entity(Point2D.Double doubleLoc) {
@@ -64,4 +75,14 @@ public abstract class Entity extends Shape {
 	}
 
 	public abstract void applyPhysics(TileMap tileMap, double dt);
+
+	public abstract void die();
+
+	public boolean isColisionable() {
+		return isColisionable;
+	}
+
+	public void setColisionable(boolean colisionable) {
+		isColisionable = colisionable;
+	}
 }
