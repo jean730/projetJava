@@ -195,12 +195,15 @@ public class Player extends Entity {
                 switch(walkingDirection){
                     case(-1):{
                         sprite.setAnimation("left");
+                        break;
                     }
                     case(1):{
                         sprite.setAnimation("right");
+                        break;
                     }
                     case(0):{
                         sprite.setAnimation("idle");
+                        break;
                     }
                 }
 		double factor = (1 + SPRINTFACTOR*(this.isSprinting? 1 : 0)) ;
