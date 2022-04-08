@@ -11,23 +11,24 @@ import javax.imageio.ImageIO;
 
 import extensions.environment.EnvironmentVisitor;
 import extensions.environment.TileMap;
+import extensions.environment.ui.Sprite;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
 
 public abstract class Entity extends Shape {
 		
-	private BufferedImage sprite;
+	protected Sprite sprite;
 	private Point2D.Double doubleLoc;
 	
-	public Entity(Point2D.Double doubleLoc) {
-		try {
-		    this.sprite = ImageIO.read(new File("assets/Sprites/ptitbonhome.png"));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		this.doubleLoc = doubleLoc;
+	public Entity(Point2D.Double doubleLoc, Sprite sprite) {
+            this.sprite = sprite;
+            this.doubleLoc = doubleLoc;
 	}
 	
+	public Entity(Point2D.Double doubleLoc) {
+            this.doubleLoc = doubleLoc;
+	}
+
 	@Override
 	public Point getLoc() {
 		return new Point((int)this.doubleLoc.x,(int)this.doubleLoc.y);
@@ -58,7 +59,7 @@ public abstract class Entity extends Shape {
 		((EnvironmentVisitor) visitor).visitEntity(this);
 	}
 
-	public BufferedImage getSprite() {
+	public Sprite getSprite() {
 		return sprite;
 	}
 

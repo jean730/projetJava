@@ -39,7 +39,7 @@ public class EnvironmentDraftman extends ShapeDraftman implements EnvironmentVis
 
 	@Override
 	public void visitEntity(Entity entity) {
-		BufferedImage sprite = entity.getSprite();
-		g.drawImage(sprite, entity.getLoc().x, entity.getLoc().y, entity.getLoc().x + sprite.getWidth(), entity.getLoc().y + sprite.getHeight(), 0, 0, sprite.getWidth(), sprite.getHeight(), null);
+		Sprite sprite = entity.getSprite();
+                entity.getSprite().draw(entity.getLoc().x,entity.getLoc().y,g);
 	}
 }

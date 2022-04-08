@@ -39,7 +39,7 @@ public class Environment extends JFrame {
 	private void buildModel()
 	{
 		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
-		Player p = new Player(new Point2D.Double(100,100));
+		Player p = new Player(new Point2D.Double(100,100), this.model);
 		this.model.addEntity(p);
 		this.model.addPlayer(p);
 	}
