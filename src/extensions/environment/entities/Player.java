@@ -11,17 +11,21 @@ public class Player extends Entity {
 	
 	private static final double MAXFALLSPEED = 1000;
 	
-	private static final double MAXWALKSPEED = 500;
+	private static final double MAXWALKSPEED = 300;
 	private static final double SPRINTFACTOR = 0.4;
 	
 	private static final double GRAVITY = 1000;
 	private static final double JUMPSTRENGTH = 400;
 	
-	private static final double WALKSTRENGTH = 200;
+	private static final double WALKSTRENGTH = 600;
 	private static final double FRICTIONFACTOR = 0.9999;
 	private static final double FRICTIONMINSPEED = 10;
+
+        private int Left = 0;
+        private int Right = 0;
+        private int Jumping = 0;
+        private int walkingDirection = 0;
  
-	private int walkingDirection = 0;
 	private boolean isSprinting = false;
 	private Point2D.Double velocity = new Point2D.Double(0,0);
 	private GameModel gameModel;
@@ -36,6 +40,8 @@ public class Player extends Entity {
 	
 	@Override
 	public void applyPhysics(TileMap tileMap, double dt) {
+                if(Jumping==1)
+                    conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
 		Point2D.Double doubleLoc = this.getDoubleLoc();
 		if (!onGround(tileMap, doubleLoc) && velocity.y < MAXFALLSPEED)
 			velocity.setLocation(velocity.x, velocity.y+GRAVITY*dt);
@@ -150,19 +156,46 @@ public class Player extends Entity {
 	}
 	
 	public void walk(double dt) {
-		System.out.println(this.walkingDirection);
+                walkingDirection = Right-Left;
+                System.out.println(walkingDirection+":"+Left+":"+Right);
 		double factor = (1 + SPRINTFACTOR*(this.isSprinting? 1 : 0)) ;
-		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * this.walkingDirection;
+		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * walkingDirection;
 		double absv = Math.abs(velocity.x);
-		if (Math.abs(this.velocity.x) > MAXWALKSPEED * factor) this.velocity.x = MAXWALKSPEED * factor * this.walkingDirection;
+		if (Math.abs(this.velocity.x) > MAXWALKSPEED * factor) this.velocity.x = MAXWALKSPEED * factor * walkingDirection;
 	}
+
+        public void press(int key){
+            switch(key){
+                case(0):{
+                    Left = 1;
+                    break;
+                }
+                case(1):{
+                    Right = 1;
+                    break;
+                }
+                case(2):{
+                    Jumping = 1;
+                    break;
+                }
+            }
+        }
+
+        public void release(int key){
+            switch(key){
+                case(0):{
+                    Left = 0;
+                    break;
+                }
+                case(1):{
+                    Right = 0;
+                    break;
+                }
+                case(2):{
+                    Jumping = 0;
+                    break;
+                }
+            }
+        }
 	
-	public void startWalk(int walkingDirection, Boolean isSprinting) {
-		this.walkingDirection = walkingDirection;
-		this.isSprinting = isSprinting;
-	}
-	
-	public void stopWalk() {
-		this.walkingDirection = 0;
-	}
 }
