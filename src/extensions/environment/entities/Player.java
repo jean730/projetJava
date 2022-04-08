@@ -100,9 +100,14 @@ public class Player extends Entity {
 	public Boolean onGround(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			return tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+1)/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) ((doubleLoc.x-1)/tileMap.TILEWIDTH)] >= 0;
+			for(int i = 0; i < this.getSprite().getWidth(); i++)
+			{
+				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+i)/tileMap.TILEWIDTH)] >= 0)
+				{
+					return true;
+				}
+			}
+			return false;
 		} catch (Exception e) {
 			this.die();
 			return true;
@@ -112,9 +117,14 @@ public class Player extends Entity {
 	public Boolean onRoof(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			return tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+1)/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) ((doubleLoc.x-1)/tileMap.TILEWIDTH)] >= 0;
+			for(int i = 0; i < this.getSprite().getWidth(); i++)
+			{
+				if(tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+i)/tileMap.TILEWIDTH)] >= 0)
+				{
+					return true;
+				}
+			}
+			return false;
 		} catch (Exception e) {
 			this.die();
 			return true;
@@ -124,9 +134,14 @@ public class Player extends Entity {
 	public Boolean onWallLeft(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			return tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y+1)/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y-1)/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0;
+			for(int i = 0; i < this.getSprite().getHeight(); i++)
+			{
+				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+i)/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0)
+				{
+					return true;
+				}
+			}
+			return false;
 		} catch (Exception e) {
 			this.die();
 			return true;
@@ -136,9 +151,14 @@ public class Player extends Entity {
 	public Boolean onWallRight(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			return tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+this.getSprite().getWidth())/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y+1)/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+this.getSprite().getWidth())/tileMap.TILEWIDTH)] >= 0 &&
-					tileMap.getTextureMap()[(int) ((doubleLoc.y-1)/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+this.getSprite().getWidth())/tileMap.TILEWIDTH)] >= 0;
+			for(int i = 0; i < this.getSprite().getHeight(); i++)
+			{
+				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+i)/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+this.getSprite().getWidth())/tileMap.TILEWIDTH)] >= 0)
+				{
+					return true;
+				}
+			}
+			return false;
 		} catch (Exception e) {
 			this.die();
 			return true;
