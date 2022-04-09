@@ -43,12 +43,18 @@ public class Player extends Entity {
 	
 	@Override
 	public void applyPhysics(TileMap tileMap, double dt) {
-                if(Jumping==1)
-                    conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
+        if(Jumping==1)
+        	conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
+		walk(dt);
 		Point2D.Double doubleLoc = this.getDoubleLoc();
+		System.out.println("------");
+		System.out.println(onWallRight(tileMap,doubleLoc));
+		System.out.println(onWallLeft(tileMap,doubleLoc));
+		System.out.println(onGround(tileMap,doubleLoc));
+		System.out.println(onRoof(tileMap,doubleLoc));
 		if (!onGround(tileMap, doubleLoc) && velocity.y < MAXFALLSPEED)
 			velocity.setLocation(velocity.x, velocity.y+GRAVITY*dt);
-		walk(dt);
+
 		if (velocity.x * walkingDirection <= 0 ) {
 			if (Math.abs(velocity.x) > FRICTIONMINSPEED)
 				velocity.x *= FRICTIONFACTOR;
@@ -100,7 +106,7 @@ public class Player extends Entity {
 	public Boolean onGround(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			for(int i = 0; i < this.getSprite().getWidth(); i++)
+			for(int i = 1; i < this.getSprite().getWidth(); i++)
 			{
 				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+this.getSprite().getHeight())/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+i)/tileMap.TILEWIDTH)] >= 0)
 				{
@@ -117,7 +123,7 @@ public class Player extends Entity {
 	public Boolean onRoof(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			for(int i = 0; i < this.getSprite().getWidth(); i++)
+			for(int i = 1; i < this.getSprite().getWidth(); i++)
 			{
 				if(tileMap.getTextureMap()[(int) (doubleLoc.y/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+i)/tileMap.TILEWIDTH)] >= 0)
 				{
@@ -134,7 +140,7 @@ public class Player extends Entity {
 	public Boolean onWallLeft(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			for(int i = 0; i < this.getSprite().getHeight(); i++)
+			for(int i = 1; i < this.getSprite().getHeight(); i++)
 			{
 				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+i)/tileMap.TILEWIDTH)][(int) (doubleLoc.x/tileMap.TILEWIDTH)] >= 0)
 				{
@@ -151,7 +157,7 @@ public class Player extends Entity {
 	public Boolean onWallRight(TileMap tileMap, Point2D.Double doubleLoc)
 	{
 		try {
-			for(int i = 0; i < this.getSprite().getHeight(); i++)
+			for(int i = 1; i < this.getSprite().getHeight(); i++)
 			{
 				if(tileMap.getTextureMap()[(int) ((doubleLoc.y+i)/tileMap.TILEWIDTH)][(int) ((doubleLoc.x+this.getSprite().getWidth())/tileMap.TILEWIDTH)] >= 0)
 				{
