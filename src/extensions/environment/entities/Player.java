@@ -60,7 +60,7 @@ public class Player extends Entity {
 		if (velocity.x > 0) {
 			if (onWallRight(tileMap,nextLoc)) {
 				this.velocity.x = 0;
-				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),doubleLoc.y);
+				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallRight(tileMap,nextLoc))
 					nextLoc.x += 1.0;
 			}
@@ -68,7 +68,7 @@ public class Player extends Entity {
 		else if (velocity.x < 0) {
 			if (onWallLeft(tileMap,nextLoc)) {
 				this.velocity.x = 0;
-				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),doubleLoc.y);
+				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallLeft(tileMap,nextLoc))
 					nextLoc.x -= 1.0;
 			}
@@ -76,7 +76,7 @@ public class Player extends Entity {
 		if (velocity.y > 0) {
 			if (onGround(tileMap,nextLoc)) {
 				this.velocity.y = 0;
-				nextLoc = new Point2D.Double(doubleLoc.x,Math.ceil(doubleLoc.y));
+				nextLoc = new Point2D.Double(nextLoc.x,Math.ceil(doubleLoc.y));
 				while (!onGround(tileMap,nextLoc))
 					nextLoc.y += 1.0;
 			}
@@ -84,7 +84,7 @@ public class Player extends Entity {
 		else if (velocity.y < 0) {
 			if (onRoof(tileMap,nextLoc)) {
 				this.velocity.y = 0;
-				nextLoc = new Point2D.Double(doubleLoc.x,Math.ceil(doubleLoc.y));
+				nextLoc = new Point2D.Double(nextLoc.x,Math.ceil(doubleLoc.y));
 				while (!onRoof(tileMap,nextLoc))
 					nextLoc.y -= 1.0;
 			}
