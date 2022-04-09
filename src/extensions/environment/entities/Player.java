@@ -214,7 +214,6 @@ public class Player extends Entity {
                 }
 		double factor = (1 + SPRINTFACTOR*(this.isSprinting? 1 : 0)) ;
 		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * walkingDirection;
-		double absv = Math.abs(velocity.x);
 		if (Math.abs(this.velocity.x) > MAXWALKSPEED * factor) this.velocity.x = MAXWALKSPEED * factor * walkingDirection;
 	}
 
