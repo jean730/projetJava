@@ -5,10 +5,8 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
 
-import extensions.environment.Enemy;
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
-import extensions.environment.TileMap;
 import extensions.environment.entities.*;
 
 public class Environment extends JFrame {

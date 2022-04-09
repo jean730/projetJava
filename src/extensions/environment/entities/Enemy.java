@@ -1,9 +1,9 @@
-package extensions.environment;
+package extensions.environment.entities;
 
-import extensions.environment.entities.Entity;
+import extensions.environment.GameModel;
+import extensions.environment.TileMap;
 import extensions.environment.ui.Sprite;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Enemy extends Entity {
