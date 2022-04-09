@@ -47,11 +47,6 @@ public class Player extends Entity {
         	conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
 		walk(dt);
 		Point2D.Double doubleLoc = this.getDoubleLoc();
-		System.out.println("------");
-		System.out.println(onWallRight(tileMap,doubleLoc));
-		System.out.println(onWallLeft(tileMap,doubleLoc));
-		System.out.println(onGround(tileMap,doubleLoc));
-		System.out.println(onRoof(tileMap,doubleLoc));
 		if (!onGround(tileMap, doubleLoc) && velocity.y < MAXFALLSPEED)
 			velocity.setLocation(velocity.x, velocity.y+GRAVITY*dt);
 
