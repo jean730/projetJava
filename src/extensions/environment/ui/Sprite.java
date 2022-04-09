@@ -37,8 +37,11 @@ public class Sprite{
     }
 
     public void setAnimation(String animationName){
-        currentAnimation = animationName;
-        animations.get(animationName).reset();
+        if(currentAnimation != animationName)
+        {
+            animations.get(animationName).reset();
+            currentAnimation = animationName;
+        }
         animated = true;
     }
 
