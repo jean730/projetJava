@@ -5,10 +5,8 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
 
-import extensions.environment.Enemy;
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
-import extensions.environment.TileMap;
 import extensions.environment.entities.*;
 
 public class Environment extends JFrame {
@@ -53,8 +51,8 @@ public class Environment extends JFrame {
 		this.model.addEntity(p);
 		this.model.addEntity(fire);
 		this.model.addPlayer(p);
-		//Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
-		//this.model.addEntity(q);
+		Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
+		this.model.addEntity(q);
 	}
 	
 	public static void main(String[] args)

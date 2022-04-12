@@ -1,15 +1,15 @@
 package extensions.environment.entities;
 
-import java.awt.*;
+import extensions.environment.GameModel;
+import extensions.environment.TileMap;
+import extensions.environment.ui.Animation;
+import extensions.environment.ui.Sprite;
+
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
-import extensions.environment.TileMap;
-import extensions.environment.GameModel;
-import extensions.environment.ui.Sprite;
-import extensions.environment.ui.Animation;
+public class Enemy extends Entity {
 
-public class Player extends Entity {
-	
 	private static final double MAXFALLSPEED = 1000;
 	
 	private static final double MAXWALKSPEED = 300;
@@ -23,7 +23,7 @@ public class Player extends Entity {
 	private static final double FRICTIONMINSPEED = 10;
 
         private int Left = 0;
-        private int Right = 0;
+        private int Right = 1;
         private int Jumping = 0;
         private int walkingDirection = 0;
  
@@ -31,15 +31,15 @@ public class Player extends Entity {
 	private Point2D.Double velocity = new Point2D.Double(0,0);
 	private GameModel gameModel;
 	
-	public Player(Point2D.Double loc,GameModel gameModel) {
-            super(loc);
-            this.sprite = new Sprite("assets/Player/Player.png");
-            sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,140));
-            sprite.registerAnimation("left",new Animation(16,16,128,256,8,4,140));
-            sprite.registerAnimation("right",new Animation(16,16,128,256,16,4,140));
-            sprite.setAnimation("idle");
-            this.gameModel = gameModel;
-	}
+    public Enemy(Point2D.Double loc,GameModel gameModel) {
+        super(loc);
+        this.sprite = new Sprite("assets/Sprites/ptitbonhome_inverted.png");
+        sprite.registerAnimation("idle",new Animation(16,16,128,256,0,1,1));
+        sprite.registerAnimation("left",new Animation(16,16,128,256,0,1,1));
+        sprite.registerAnimation("right",new Animation(16,16,128,256,0,1,1));
+        sprite.setAnimation("idle");
+        this.gameModel = gameModel;
+    }
 	
 	@Override
 	public void applyPhysics(TileMap tileMap, double dt) {
@@ -63,6 +63,8 @@ public class Player extends Entity {
 				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallRight(tileMap,nextLoc))
 					nextLoc.x += 1.0;
+				Left = 1;
+				Right = 0;
 			}
 		}
 		else if (velocity.x < 0) {
@@ -71,6 +73,8 @@ public class Player extends Entity {
 				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallLeft(tileMap,nextLoc))
 					nextLoc.x -= 1.0;
+				Left = 0;
+				Right = 1;
 			}
 		}
 		if (velocity.y > 0) {
@@ -211,39 +215,4 @@ public class Player extends Entity {
 		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * walkingDirection;
 		if (Math.abs(this.velocity.x) > MAXWALKSPEED * factor) this.velocity.x = MAXWALKSPEED * factor * walkingDirection;
 	}
-
-        public void press(int key){
-            switch(key){
-                case(0):{
-                    Left = 1;
-                    break;
-                }
-                case(1):{
-                    Right = 1;
-                    break;
-                }
-                case(2):{
-                    Jumping = 1;
-                    break;
-                }
-            }
-        }
-
-        public void release(int key){
-            switch(key){
-                case(0):{
-                    Left = 0;
-                    break;
-                }
-                case(1):{
-                    Right = 0;
-                    break;
-                }
-                case(2):{
-                    Jumping = 0;
-                    break;
-                }
-            }
-        }
-	
 }
