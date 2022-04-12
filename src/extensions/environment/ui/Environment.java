@@ -51,8 +51,8 @@ public class Environment extends JFrame {
 		this.model.addEntity(p);
 		this.model.addEntity(fire);
 		this.model.addPlayer(p);
-		//Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
-		//this.model.addEntity(q);
+		Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
+		this.model.addEntity(q);
 	}
 	
 	public static void main(String[] args)

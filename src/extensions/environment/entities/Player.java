@@ -185,7 +185,7 @@ public class Player extends Entity {
 		for(Entity e:this.gameModel.getEntities()){
 			Rectangle inter = this.getBounds().intersection(e.getBounds());
 			if (!inter.isEmpty() && e!=this && e.isColisionable()) {
-				//System.out.println("Colision avec "+e.toString());
+				//System.out.println("Collision avec "+e.toString());
 				if (inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die(); else this.die();
 			}
 		}
