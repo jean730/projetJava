@@ -63,6 +63,7 @@ public class Player extends Entity {
 				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallRight(tileMap,nextLoc))
 					nextLoc.x += 1.0;
+				this.conditionalJumpFunctionToJumpOnlyLeftRight(tileMap);
 			}
 		}
 		else if (velocity.x < 0) {
@@ -71,6 +72,7 @@ public class Player extends Entity {
 				nextLoc = new Point2D.Double(Math.ceil(doubleLoc.x),nextLoc.y);
 				while (!onWallLeft(tileMap,nextLoc))
 					nextLoc.x -= 1.0;
+				this.conditionalJumpFunctionToJumpOnlyLeftRight(tileMap);
 			}
 		}
 		if (velocity.y > 0) {
@@ -177,6 +179,18 @@ public class Player extends Entity {
 		this.gameModel.getAudio().play("jump");
 	}
 
+	public void conditionalJumpFunctionToJumpOnlyLeftRight(TileMap tileMap) {
+		conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
+		if (onWallLeft(tileMap,this.getDoubleLoc()) && Right == 1)
+		{
+			this.jump();
+		}
+		if (onWallRight(tileMap,this.getDoubleLoc()) && Left == 1)
+		{
+			this.jump();
+		}
+	}
+	
 	public void conditionalJumpFunctionToJumpOnlyOnGround(TileMap tileMap) {
 		if (onGround(tileMap,this.getDoubleLoc())) this.jump();
 	}
