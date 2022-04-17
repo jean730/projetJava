@@ -180,7 +180,6 @@ public class Player extends Entity {
 	}
 
 	public void conditionalJumpFunctionToJumpOnlyLeftRight(TileMap tileMap) {
-		conditionalJumpFunctionToJumpOnlyOnGround(tileMap);
 		if (onWallLeft(tileMap,this.getDoubleLoc()) && Right == 1)
 		{
 			this.jump();
