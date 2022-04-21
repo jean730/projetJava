@@ -26,6 +26,8 @@ public class Player extends Entity {
         private int Right = 0;
         private int Jumping = 0;
         private int walkingDirection = 0;
+        private int jumpWallLeft = 0;
+        private int jumpWallRight = 0;
  
 	private boolean isSprinting = false;
 	private Point2D.Double velocity = new Point2D.Double(0,0);
@@ -180,13 +182,17 @@ public class Player extends Entity {
 	}
 
 	public void conditionalJumpFunctionToJumpOnlyLeftRight(TileMap tileMap) {
-		if (onWallLeft(tileMap,this.getDoubleLoc()) && Right == 1)
+		if (onWallLeft(tileMap,this.getDoubleLoc()) && !onGround(tileMap,this.getDoubleLoc()) && jumpWallLeft == 0)
 		{
 			this.jump();
+			jumpWallLeft = 1;
+			jumpWallRight = 0;
 		}
-		if (onWallRight(tileMap,this.getDoubleLoc()) && Left == 1)
+		if (onWallRight(tileMap,this.getDoubleLoc()) && !onGround(tileMap,this.getDoubleLoc()) && jumpWallRight == 0)
 		{
 			this.jump();
+			jumpWallLeft = 0;
+			jumpWallRight = 1;
 		}
 	}
 	
@@ -229,10 +235,12 @@ public class Player extends Entity {
             switch(key){
                 case(0):{
                     Left = 1;
+                    jumpWallRight = 0;
                     break;
                 }
                 case(1):{
                     Right = 1;
+                    jumpWallLeft = 0;
                     break;
                 }
                 case(2):{
