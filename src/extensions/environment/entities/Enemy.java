@@ -32,8 +32,7 @@ public class Enemy extends Entity {
 	private GameModel gameModel;
 	
     public Enemy(Point2D.Double loc,GameModel gameModel) {
-        super(loc);
-        this.sprite = new Sprite("assets/Sprites/ptitbonhome_inverted.png");
+        super(loc, new Sprite("assets/Sprites/ptitbonhome_inverted.png"),true);
         sprite.registerAnimation("idle",new Animation(16,16,128,256,0,1,1));
         sprite.registerAnimation("left",new Animation(16,16,128,256,0,1,1));
         sprite.registerAnimation("right",new Animation(16,16,128,256,0,1,1));
@@ -183,16 +182,6 @@ public class Enemy extends Entity {
 
 	public void conditionalJumpFunctionToJumpOnlyOnGround(TileMap tileMap) {
 		if (onGround(tileMap,this.getDoubleLoc())) this.jump();
-	}
-
-	public void applyColisions(){
-		for(Entity e:this.gameModel.getEntities()){
-			Rectangle inter = this.getBounds().intersection(e.getBounds());
-			if (!inter.isEmpty() && e!=this && e.isColisionable()) {
-				//System.out.println("Collision avec "+e.toString());
-				if (inter.height<inter.width && this.getLoc().y<e.getLoc().y) e.die(); else this.die();
-			}
-		}
 	}
 
 	public void walk(double dt) {
