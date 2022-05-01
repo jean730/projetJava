@@ -139,13 +139,12 @@ public class GameModel extends Shape {
 			FileWriter writer = new FileWriter(path);
 			writer.write(this.tileMap.getTileSetPath()+" ");
 			int [][] tab=this.tileMap.getTextureMap();
+			writer.write(tab.length+" "+tab[0].length+"\n");
 			for (int i = 0; i < tab.length; i++) {
 				for (int j = 0; j < tab[0].length; j++) {
-					writer.write(tab[i][j]);
-					writer.write(" ");
+					writer.write(tab[i][j] +" ");
 				}
-				writer.write(-2);
-				writer.write("\n");
+				writer.write(-2 +"\n");
 			}
 			writer.close();
 		}
