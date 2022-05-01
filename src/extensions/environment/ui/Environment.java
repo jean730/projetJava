@@ -12,10 +12,10 @@ import extensions.environment.TreeGenerator;
 import extensions.environment.entities.*;
 
 public class Environment extends JFrame {
-	
+
 	EnvironmentView gview;
 	GameModel model;
-	
+
 	public Environment()
 	{	
 		super("Shapes Editor");
@@ -27,9 +27,10 @@ public class Environment extends JFrame {
 				System.exit(0);
 			}
 		});
-		
+
 		this.buildModel();
-		
+                this.setResizable(false);
+
 		this.gview = new EnvironmentView(this.model);
 		this.gview.setPreferredSize(new Dimension(960,540));
 		this.getContentPane().add(this.gview, java.awt.BorderLayout.CENTER);
@@ -39,38 +40,21 @@ public class Environment extends JFrame {
 
 	private void buildModel()
 	{
-		//this.model = new GameModel(new Loader("assets/Level1").getTileMap());
-		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
-                TreeGenerator.generate(this.model);
-		Player p = new Player(new Point2D.Double(4000,100), this.model);
-                StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png"); // Entité de test
-                fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
-                fire.getSprite().setAnimation("default");
-                this.model.addEntity(new Cloud(model,new Point2D.Double(-200,50),-20,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
-                this.model.addEntity(new Cloud(model,new Point2D.Double(-100,80),-30,"assets/GrassLand/Background/GrassLand_Cloud_2.png"));
-                this.model.addEntity(new Cloud(model,new Point2D.Double(0,20),-20,"assets/GrassLand/Background/GrassLand_Cloud_3.png"));
-                this.model.addEntity(new Cloud(model,new Point2D.Double(100,100),-40,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
-                this.model.addEntity(new Cloud(model,new Point2D.Double(250,30),-10,"assets/GrassLand/Background/GrassLand_Cloud_2.png"));
-                this.model.addEntity(new Cloud(model,new Point2D.Double(400,60),-50,"assets/GrassLand/Background/GrassLand_Cloud_3.png"));
-		this.model.addEntity(p);
-		this.model.addEntity(fire);
-                Pixie pixie = new Pixie(model);
-		this.model.addEntity(pixie);
-                this.model.setPixie(pixie);
-		this.model.addPlayer(p);
-		Enemy q = new Enemy(new Point2D.Double(3900,256),this.model);
-		this.model.addEntity(q);
+
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap(),new Point2D.Double(4000,100));
+                TreeGenerator.generate((GameModel)this.model);
+
 	}
-	
+
 	public static void main(String[] args)
 	{
 		Environment self = new Environment();
 		self.pack();
 		self.setVisible(true);
-                self.model.getAudio().play("background");
+		self.model.getAudio().play("background");
 		self.gameLoop();
 	}
-	
+
 	private void gameLoop() {
 		while (true) {
 			this.model.applyPhysics();

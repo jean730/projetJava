@@ -1,5 +1,6 @@
 package extensions.environment;
 import libraries.SimplexNoise;
+import java.util.Random;
 
 
 public class Generator {
@@ -8,6 +9,7 @@ public class Generator {
             return height-(int)(10*SimplexNoise.noise(x/30.0,0)+15);
     }
     public Generator(String tileSet,int width, int height){
+        Random r = new Random();
         int[][] map = new int[height][width];
         for(int x=0;x<width;x++){
             int h=getHeight(x,height);
@@ -43,8 +45,24 @@ public class Generator {
                         else
                             map[y][x] = 45;
                     }
-                    else if(map[y][x]==0)//verifions qu'il n'a pas été modifié entre temps
-                        map[y][x] = 73;
+                    else if(map[y][x]==0){//verifions qu'il n'a pas été modifié entre temps
+                        int randint = r.nextInt(10);
+                        if(randint<3){
+                            switch(randint){
+                                case 0:
+                                    map[y][x] = 74;
+                                    break;
+                                case 1:
+                                    map[y][x] = 58;
+                                    break;
+                                case 2:
+                                    map[y][x] = 57;
+                                    break;
+                            }
+                        }
+                        else
+                            map[y][x] = 73;
+                    }
                 }
                 
 

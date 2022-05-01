@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import graphics.shapes.SCircle;
+import graphics.shapes.SImage;
 import graphics.shapes.SCollection;
 import graphics.shapes.SRectangle;
 import graphics.shapes.SText;
@@ -48,6 +49,9 @@ public class ShapeDraftman implements ShapeVisitor {
 		}
 		SelectionAttributes selectionAttributes = (SelectionAttributes) sRect.getAttributes().get(SelectionAttributes.ID);
 		if (selectionAttributes != null && selectionAttributes.isSelected()) drawSelectionSquares(sRect.getBounds());
+	}
+	public void visitImage(SImage image) {
+                g.drawImage(image.getImage(),image.getLoc().x,image.getLoc().y,null);
 	}
 
 	@Override

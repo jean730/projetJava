@@ -30,6 +30,7 @@ public class Audio{
             @Override
             public void run() {
                 Clip clip = sounds.get(ressourceName);
+                clip.stop();
                 clip.setFramePosition(0);
                 clip.start();
             }
