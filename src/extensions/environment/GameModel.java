@@ -2,10 +2,15 @@ package extensions.environment;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import extensions.environment.entities.Cloud;
+import extensions.environment.entities.Enemy;
 import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
+import extensions.environment.entities.StaticEntity;
+import extensions.environment.ui.Animation;
 import extensions.environment.audio.Audio;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
@@ -18,9 +23,25 @@ public class GameModel extends Shape {
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private ArrayList<Player> players = new ArrayList<>();
 	private Audio audio = new Audio();
+	private boolean isFinished = true;
 	
 	public GameModel(TileMap tileMap) {
 		this.tileMap = tileMap;
+		Player p = new Player(new Point2D.Double(50,100), this);
+		StaticEntity fire = new StaticEntity(new Point2D.Double(100,192),"assets/Details/fire.png"); // Entité de test
+		fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
+		fire.getSprite().setAnimation("default");
+		this.addEntity(new Cloud(new Point2D.Double(-200,50),-20,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
+		this.addEntity(new Cloud(new Point2D.Double(-100,80),-30,"assets/GrassLand/Background/GrassLand_Cloud_2.png"));
+		this.addEntity(new Cloud(new Point2D.Double(0,20),-20,"assets/GrassLand/Background/GrassLand_Cloud_3.png"));
+		this.addEntity(new Cloud(new Point2D.Double(100,100),-40,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
+		this.addEntity(new Cloud(new Point2D.Double(250,30),-10,"assets/GrassLand/Background/GrassLand_Cloud_2.png"));
+		this.addEntity(new Cloud(new Point2D.Double(400,60),-50,"assets/GrassLand/Background/GrassLand_Cloud_3.png"));
+		this.addEntity(p);
+		this.addEntity(fire);
+		this.addPlayer(p);
+		Enemy q = new Enemy(new Point2D.Double(100,150),this);
+		this.addEntity(q);
 	}
 
 	public void updateTime() {
@@ -58,6 +79,12 @@ public class GameModel extends Shape {
 	
 	public void addPlayer(Player player) {
 		players.add(player);
+	}
+	
+	public void gameLoop() {
+		while (this.isFinished) {
+			this.applyPhysics();
+		}
 	}
 	
 	public void applyPhysics() {
