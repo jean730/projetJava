@@ -14,7 +14,7 @@ public class Pixie extends Entity{
         private double time = 0;
         private GameModel model;
 	public Pixie(GameModel model){
-            super(new Point2D.Double(0,0));
+            super(new Point2D.Double(0,0), "Pixie");
             this.model = model;
             this.sprite = new Sprite("assets/pixie/pixie.png");
             sprite.registerAnimation("idle",new Animation(8,8,32,8,0,4,250));

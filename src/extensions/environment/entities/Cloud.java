@@ -15,7 +15,7 @@ public class Cloud extends Entity {
         private double y;
         private GameModel model;
 	public Cloud(GameModel model,Point2D.Double loc,int speed,String fileName) {
-            super(loc);
+            super(loc,"Cloud");
             x = getLoc().x;
             y = getLoc().y;
             this.sprite = new Sprite(fileName);

@@ -32,7 +32,7 @@ public class Player extends Entity {
 	private GameModel gameModel;
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
-            super(loc);
+            super(loc,"Player");
             this.sprite = new Sprite("assets/Player/Player.png");
             sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,140));
             sprite.registerAnimation("left",new Animation(16,16,128,256,8,4,140));

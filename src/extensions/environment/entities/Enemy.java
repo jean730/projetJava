@@ -32,7 +32,7 @@ public class Enemy extends Entity {
 	private GameModel gameModel;
 	
     public Enemy(Point2D.Double loc,GameModel gameModel) {
-        super(loc, new Sprite("assets/Sprites/ptitbonhome_inverted.png"),true);
+        super(loc, new Sprite("assets/Sprites/ptitbonhome_inverted.png"), true,"Enemy");
         sprite.registerAnimation("idle",new Animation(16,16,128,256,0,1,1));
         sprite.registerAnimation("left",new Animation(16,16,128,256,0,1,1));
         sprite.registerAnimation("right",new Animation(16,16,128,256,0,1,1));

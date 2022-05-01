@@ -35,7 +35,7 @@ public class GameModel extends Shape {
 		this.tileMap = tileMap;
         TreeGenerator.generate(this);
         Player p = new Player(new Point2D.Double(4000,100), this);
-        StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png"); // Entité de test
+        StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png", "Fire"); // Entité de test
         fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
         fire.getSprite().setAnimation("default");
         this.addEntity(new Cloud(this,new Point2D.Double(-200,50),-20,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
@@ -145,6 +145,9 @@ public class GameModel extends Shape {
 					writer.write(tab[i][j] +" ");
 				}
 				writer.write(-2 +"\n");
+			}
+			for(Entity e:this.entities){
+				writer.write(e.getType()+" "+e.getLoc().x+" "+e.getLoc().y+"\n");
 			}
 			writer.close();
 		}
