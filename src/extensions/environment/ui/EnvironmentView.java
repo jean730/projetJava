@@ -67,7 +67,7 @@ public class EnvironmentView extends View {
                 g.fillRect(0, 0,getWidth(),getHeight());
 		Shape shape = (Shape) this.getModel();
 		shape.accept(draftman);
-		cameraGraphics.drawImage(this.pixieLight, pixie.getLoc().x-650, pixie.getLoc().y-650, null);
+		cameraGraphics.drawImage(this.pixieLight, pixie.getLoc().x-650+4, pixie.getLoc().y-650+4, null);
 		g.drawImage(this.camera.getImage(), 0, 0, null);
                 repaint();
 	}
