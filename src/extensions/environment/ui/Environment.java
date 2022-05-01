@@ -54,6 +54,9 @@ public class Environment extends JFrame {
                 this.model.addEntity(new Cloud(model,new Point2D.Double(400,60),-50,"assets/GrassLand/Background/GrassLand_Cloud_3.png"));
 		this.model.addEntity(p);
 		this.model.addEntity(fire);
+                Pixie pixie = new Pixie(model);
+		this.model.addEntity(pixie);
+                this.model.setPixie(pixie);
 		this.model.addPlayer(p);
 		Enemy q = new Enemy(new Point2D.Double(3900,256),this.model);
 		this.model.addEntity(q);
