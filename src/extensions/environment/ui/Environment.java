@@ -43,7 +43,7 @@ public class Environment extends JFrame {
 		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
                 TreeGenerator.generate(this.model);
 		Player p = new Player(new Point2D.Double(4000,100), this.model);
-                StaticEntity fire = new StaticEntity(new Point2D.Double(100,192),"assets/Details/fire.png"); // Entité de test
+                StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png"); // Entité de test
                 fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
                 fire.getSprite().setAnimation("default");
                 this.model.addEntity(new Cloud(model,new Point2D.Double(-200,50),-20,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
@@ -55,7 +55,7 @@ public class Environment extends JFrame {
 		this.model.addEntity(p);
 		this.model.addEntity(fire);
 		this.model.addPlayer(p);
-		Enemy q = new Enemy(new Point2D.Double(100,150),this.model);
+		Enemy q = new Enemy(new Point2D.Double(3900,256),this.model);
 		this.model.addEntity(q);
 	}
 	
