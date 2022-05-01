@@ -29,6 +29,7 @@ public class Loader {
             j++;
         }
         tileMap=new TileMap(tileSet, map);
+        scanner.close();
     }
 
     public TileMap getTileMap() {

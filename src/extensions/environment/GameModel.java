@@ -3,6 +3,8 @@ package extensions.environment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import extensions.environment.audio.Audio;
@@ -15,6 +17,8 @@ import extensions.environment.entities.StaticEntity;
 import extensions.environment.ui.Animation;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
+
+import javax.imageio.IIOException;
 
 public class GameModel extends Shape {
 	
@@ -128,5 +132,25 @@ public class GameModel extends Shape {
 
 	public double getDt() {
 		return dt;
+	}
+
+	public void save(String path){
+		try {
+			FileWriter writer = new FileWriter(path);
+			writer.write(this.tileMap.getTileSetPath()+" ");
+			int [][] tab=this.tileMap.getTextureMap();
+			for (int i = 0; i < tab.length; i++) {
+				for (int j = 0; j < tab[0].length; j++) {
+					writer.write(tab[i][j]);
+					writer.write(" ");
+				}
+				writer.write(-2);
+				writer.write("\n");
+			}
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

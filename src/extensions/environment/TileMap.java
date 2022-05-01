@@ -18,6 +18,7 @@ public class TileMap extends Shape{
 	
 	private BufferedImage tileSet;
 	private int[][] textureMap;
+	private String tileSetPath;
 
 	public TileMap(String path, int[][] map){
 		try {
@@ -25,6 +26,7 @@ public class TileMap extends Shape{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.tileSetPath=path;
 		this.textureMap=map;
 		this.TILEWIDTH = this.tileSet.getWidth()/TILEPERROW;
 	}
@@ -52,5 +54,8 @@ public class TileMap extends Shape{
 	public void accept(ShapeVisitor visitor) {
 		((EnvironmentVisitor) visitor).visitTileMap(this);
 	}
-	
+
+	public String getTileSetPath() {
+		return tileSetPath;
+	}
 }
