@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
+import extensions.environment.Generator;
 import extensions.environment.ui.EnvironmentView;
 import extensions.menu.menus.MainMenu;
 import extensions.menu.ui.MenuView;
@@ -38,7 +39,7 @@ public class GameMain extends JFrame {
 	}
 
 	private void buildEnvironnement() {
-		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
 		this.gview = new EnvironmentView(this.model);
 		this.gview.setPreferredSize(new Dimension(960, 540));
 		this.gview.repaint();
@@ -56,6 +57,7 @@ public class GameMain extends JFrame {
 		this.buildEnvironnement();
 		this.getContentPane().add(this.gview, java.awt.BorderLayout.CENTER);
 		this.pack();
+                this.gview.requestFocusInWindow();
 		Thread t = new Thread() {
 			public void run() {
 				((GameModel)model).gameLoop();
