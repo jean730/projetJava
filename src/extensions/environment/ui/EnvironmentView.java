@@ -42,7 +42,7 @@ public class EnvironmentView extends View {
 		if (getWidth() != camera.getWidth() || getHeight() != camera.getHeight())
 			camera = new Camera(getWidth(), getHeight());
                 double zoom = getWidth() / 480.0d;
-		this.camera.setTransform(-player.getLoc().x*zoom+getWidth()/2, 0, zoom, 0);
+		this.camera.setTransform(-player.getLoc().x*zoom+getWidth()/2, -player.getLoc().y*zoom+(1.0/3.0)*getWidth(), zoom, 0);
 		Graphics cameraGraphics = this.camera.graphics();
 		this.draftman = new EnvironmentDraftman(cameraGraphics);
 		cameraGraphics.setColor(new Color(128,227,255));

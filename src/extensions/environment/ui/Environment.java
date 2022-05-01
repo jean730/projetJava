@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
+import extensions.environment.Generator;
+import extensions.environment.TreeGenerator;
 import extensions.environment.entities.*;
 
 public class Environment extends JFrame {
@@ -37,8 +39,10 @@ public class Environment extends JFrame {
 
 	private void buildModel()
 	{
-		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
-		Player p = new Player(new Point2D.Double(50,100), this.model);
+		//this.model = new GameModel(new Loader("assets/Level1").getTileMap());
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
+                TreeGenerator.generate(this.model);
+		Player p = new Player(new Point2D.Double(4000,100), this.model);
                 StaticEntity fire = new StaticEntity(new Point2D.Double(100,192),"assets/Details/fire.png"); // Entité de test
                 fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
                 fire.getSprite().setAnimation("default");
