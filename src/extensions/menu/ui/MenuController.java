@@ -41,9 +41,9 @@ public class MenuController extends Controller {
 		Iterator<Shape> iterator = this.collection.iterator();
 		Button target = null;
 		while (iterator.hasNext()){
-			Button next = (Button) iterator.next();
-			if (next.getBounds().contains(e.getPoint())) {
-				target = next;
+			Shape next = (Shape) iterator.next();
+			if (next instanceof Button && next.getBounds().contains(e.getPoint())) {
+				target = (Button)next;
 			}
 		}
 		return target;
@@ -52,7 +52,10 @@ public class MenuController extends Controller {
 	public void execute(String string) {
 		switch(string) {
 		case "play":
-			((Menu) this.collection).getGameMain().launchGame();
+			((Menu) this.collection).getGameMain().newGame();
+			break;
+		case "load":
+			((Menu) this.collection).getGameMain().loadGame();
 			break;
 		case "quit":
 			((Menu) this.collection).getGameMain().quit();

@@ -23,14 +23,13 @@ public class GameModel extends Shape {
 	private TileMap tileMap;
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private ArrayList<Player> players = new ArrayList<>();
-       private Pixie pixie;
+        private Pixie pixie;
 	private Audio audio = new Audio();
 	private boolean isFinished = true;
 	
-	public GameModel(TileMap tileMap) {
-		this.tileMap = tileMap;
-        TreeGenerator.generate(this);
-        Player p = new Player(new Point2D.Double(4000,100), this);
+	public GameModel(TileMap tileMap,Point2D.Double playerPos) {
+        this.tileMap = tileMap;
+        Player p = new Player(playerPos, this);
         StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png"); // Entité de test
         fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
         fire.getSprite().setAnimation("default");

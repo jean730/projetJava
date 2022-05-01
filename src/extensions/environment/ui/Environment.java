@@ -29,6 +29,7 @@ public class Environment extends JFrame {
 		});
 
 		this.buildModel();
+                this.setResizable(false);
 
 		this.gview = new EnvironmentView(this.model);
 		this.gview.setPreferredSize(new Dimension(960,540));
@@ -40,7 +41,8 @@ public class Environment extends JFrame {
 	private void buildModel()
 	{
 
-		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap(),new Point2D.Double(4000,100));
+                TreeGenerator.generate((GameModel)this.model);
 
 	}
 

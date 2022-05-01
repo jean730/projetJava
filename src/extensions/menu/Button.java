@@ -2,14 +2,14 @@ package extensions.menu;
 
 import java.awt.Point;
 
-import graphics.shapes.SText;
+import graphics.shapes.SImage;
 
-public class Button extends SText {
+public class Button extends SImage {
 
 	private String id;
 
-	public Button(Point point, String string, String id) {
-		super(point, string);
+	public Button(Point point, String fileName, String id) {
+		super(fileName,point);
 		this.id = id;
 	}
 
