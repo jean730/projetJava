@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import extensions.menu.Button;
 import extensions.menu.Menu;
+import extensions.environment.audio.Audio;
 import graphics.shapes.SCollection;
 import graphics.shapes.Shape;
 import graphics.ui.Controller;
@@ -14,9 +15,11 @@ public class MenuController extends Controller {
 
 	private SCollection collection;
 	private Point mousePosition;
+        private Audio audio = new Audio();
 
 	public MenuController(Object newModel) {
 		super(newModel);
+                audio.loadAudio("assets/Audio/start.wav","start"); 
 		this.collection = (SCollection) this.getModel();
 	}
 	
@@ -53,9 +56,11 @@ public class MenuController extends Controller {
 		switch(string) {
 		case "play":
 			((Menu) this.collection).getGameMain().newGame();
+                        audio.play("start");
 			break;
 		case "load":
 			((Menu) this.collection).getGameMain().loadGame();
+                        audio.play("start");
 			break;
 		case "quit":
 			((Menu) this.collection).getGameMain().quit();

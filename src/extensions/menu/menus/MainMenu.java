@@ -16,7 +16,7 @@ public class MainMenu extends Menu {
 		super(gameMain);
                 SImage img = new SImage("assets/menu/background.png", new Point(0,0));
                 this.add(img);
-                SImage title = new SImage("assets/menu/title.png", new Point(335,10));
+                SImage title = new SImage("assets/menu/title.png", new Point(280,10));
                 this.add(title);
 		Button play = new Button(new Point(330,165),"assets/menu/nouvelle_partie.png","play");
 		this.add(play);
