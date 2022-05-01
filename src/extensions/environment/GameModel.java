@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import extensions.environment.entities.Entity;
 import extensions.environment.entities.Player;
+import extensions.environment.entities.Pixie;
 import extensions.environment.audio.Audio;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
@@ -17,6 +18,7 @@ public class GameModel extends Shape {
 	private TileMap tileMap;
 	private ArrayList<Entity> entities = new ArrayList<>();
 	private ArrayList<Player> players = new ArrayList<>();
+        private Pixie pixie;
 	private Audio audio = new Audio();
 	
 	public GameModel(TileMap tileMap) {
@@ -39,6 +41,14 @@ public class GameModel extends Shape {
 	public Audio getAudio() {
 		return audio;
 	}
+        
+        public void setPixie(Pixie pixie){
+            this.pixie = pixie;
+        }
+
+        public Pixie getPixie(){
+            return pixie;
+        }
 
 	public ArrayList<Entity> getEntities() {
 		return entities;
