@@ -19,7 +19,7 @@ public abstract class Entity extends Shape {
 		
 	protected Sprite sprite;
 	private Point2D.Double doubleLoc;
-	private boolean isColisionable=true;
+	private boolean isColisionable=false;
 
 	
 	public Entity(Point2D.Double doubleLoc, Sprite sprite) {

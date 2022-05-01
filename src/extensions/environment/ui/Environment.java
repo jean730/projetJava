@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 
 import extensions.environment.GameModel;
 import extensions.environment.Loader;
+import extensions.environment.Generator;
+import extensions.environment.TreeGenerator;
 import extensions.environment.entities.*;
 
 public class Environment extends JFrame {
@@ -37,7 +39,9 @@ public class Environment extends JFrame {
 
 	private void buildModel()
 	{
-		this.model = new GameModel(new Loader("assets/Level1").getTileMap());
+
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap());
+
 	}
 
 	public static void main(String[] args)
