@@ -144,7 +144,7 @@ public class GameModel extends Shape {
 				for (int j = 0; j < tab[0].length; j++) {
 					writer.write(tab[i][j] +" ");
 				}
-				writer.write(-2 +"\n");
+				writer.write("\n");
 			}
 			for(Entity e:this.entities){
 				writer.write(e.getType()+" "+e.getLoc().x+" "+e.getLoc().y+"\n");

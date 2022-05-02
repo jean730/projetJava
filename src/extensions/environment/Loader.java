@@ -15,21 +15,16 @@ public class Loader {
             e.printStackTrace();
         }
         String tileSet=this.scanner.next();
-        int[][] map=new int[this.scanner.nextInt()][this.scanner.nextInt()];
-        int i=0;
-        int j=0;
-        while (this.scanner.hasNext()){
-            int k=this.scanner.nextInt();
-            if (k==-2){
-                i++;
-                j=0;
-                continue;
+        int lines=this.scanner.nextInt();
+        int rows=this.scanner.nextInt();
+        int[][] map=new int[lines][rows];
+        for (int i = 0; i <lines; i++) {
+            for (int j = 0; j <rows; j++) {
+                map[i][j]=this.scanner.nextInt();
             }
-            map[i][j]=k;
-            j++;
         }
         tileMap=new TileMap(tileSet, map);
-        scanner.close();
+        this.scanner.close();
     }
 
     public TileMap getTileMap() {
