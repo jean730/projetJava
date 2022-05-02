@@ -54,6 +54,15 @@ public class GameModel extends Shape {
         this.addEntity(q);
 	}
 
+	public GameModel(String path){
+		Loader loader=new Loader(path);
+		this.tileMap=loader.getTileMap();
+		this.entities=loader.createEntityList(this);
+		this.extractPlayers();
+		this.extractPixies();
+		loader.closeScanner();
+	}
+
 	public void updateTime() {
 		this.dt = ((double)(System.nanoTime() - this.time))/1000000000;
 		this.time = System.nanoTime();
@@ -153,6 +162,17 @@ public class GameModel extends Shape {
 		}
 		catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void extractPlayers(){
+		for(Entity entity:this.entities){
+			if (entity.getType()=="Player") this.addPlayer((Player) entity);
+		}
+	}
+	public void extractPixies(){
+		for(Entity entity:this.entities){
+			if (entity.getType()=="Pixie") this.setPixie((Pixie) entity);
 		}
 	}
 }
