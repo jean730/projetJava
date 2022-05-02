@@ -34,7 +34,7 @@ public class GameModel extends Shape {
 	public GameModel(TileMap tileMap,Point2D.Double playerPos) {
         this.tileMap = tileMap;
         Player p = new Player(playerPos, this);
-        StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png"); // Entité de test
+        StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png", "Fire"); // Entité de test
         fire.getSprite().registerAnimation("default",new Animation(32,48,256,48,0,8,80));
         fire.getSprite().setAnimation("default");
         this.addEntity(new Cloud(this,new Point2D.Double(-200,50),-20,"assets/GrassLand/Background/GrassLand_Cloud_1.png"));
