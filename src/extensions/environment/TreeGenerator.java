@@ -18,7 +18,7 @@ public class TreeGenerator {
             int h_left = getHeight(x-1,map.length);
             int h_right = getHeight(x+1,map.length);
             if(r.nextInt(100)<30 && h==h_left && h==h_right){
-                StaticEntity ent = new StaticEntity(new Point2D.Double(16*x-32,-80+16*h),"assets/GrassLand/Details/GrassLand_Tree.png");
+                StaticEntity ent = new StaticEntity(new Point2D.Double(16*x-32,-80+16*h),"assets/GrassLand/Details/GrassLand_Tree.png", "Tree");
                 model.addEntity(ent);
             }
         }

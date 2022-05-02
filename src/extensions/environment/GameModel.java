@@ -3,6 +3,8 @@ package extensions.environment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import extensions.environment.audio.Audio;
@@ -15,6 +17,8 @@ import extensions.environment.entities.StaticEntity;
 import extensions.environment.ui.Animation;
 import graphics.shapes.Shape;
 import graphics.shapes.ShapeVisitor;
+
+import javax.imageio.IIOException;
 
 public class GameModel extends Shape {
 	
@@ -47,6 +51,15 @@ public class GameModel extends Shape {
         this.addPlayer(p);
         Enemy q = new Enemy(new Point2D.Double(3900,256),this);
         this.addEntity(q);
+	}
+
+	public GameModel(String path){
+		Loader loader=new Loader(path);
+		this.tileMap=loader.getTileMap();
+		this.entities=loader.createEntityList(this);
+		this.extractPlayers();
+		this.extractPixies();
+		loader.closeScanner();
 	}
 
 	public void updateTime() {
@@ -127,5 +140,38 @@ public class GameModel extends Shape {
 
 	public double getDt() {
 		return dt;
+	}
+
+	public void save(String path){
+		try {
+			FileWriter writer = new FileWriter(path);
+			writer.write(this.tileMap.getTileSetPath()+" ");
+			int [][] tab=this.tileMap.getTextureMap();
+			writer.write(tab.length+" "+tab[0].length+"\n");
+			for (int i = 0; i < tab.length; i++) {
+				for (int j = 0; j < tab[0].length; j++) {
+					writer.write(tab[i][j] +" ");
+				}
+				writer.write("\n");
+			}
+			for(Entity e:this.entities){
+				writer.write(e.getType()+" "+e.getLoc().x+" "+e.getLoc().y+"\n");
+			}
+			writer.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void extractPlayers(){
+		for(Entity entity:this.entities){
+			if (entity.getType()=="Player") this.addPlayer((Player) entity);
+		}
+	}
+	public void extractPixies(){
+		for(Entity entity:this.entities){
+			if (entity.getType()=="Pixie") this.setPixie((Pixie) entity);
+		}
 	}
 }

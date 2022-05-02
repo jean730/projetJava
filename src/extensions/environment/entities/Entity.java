@@ -20,20 +20,24 @@ public abstract class Entity extends Shape {
 	protected Sprite sprite;
 	private Point2D.Double doubleLoc;
 	private boolean isColisionable=false;
+	private String type;
 
 	
-	public Entity(Point2D.Double doubleLoc, Sprite sprite) {
+	public Entity(Point2D.Double doubleLoc, Sprite sprite, String type) {
             this.sprite = sprite;
             this.doubleLoc = doubleLoc;
+			this.type = type;
 	}
-	public Entity(Point2D.Double doubleLoc, Sprite sprite, boolean isColisionable){
+	public Entity(Point2D.Double doubleLoc, Sprite sprite, boolean isColisionable, String type){
 		this.sprite = sprite;
 		this.doubleLoc = doubleLoc;
 		this.isColisionable=isColisionable;
+		this.type = type;
 	}
 	
-	public Entity(Point2D.Double doubleLoc) {
-            this.doubleLoc = doubleLoc;
+	public Entity(Point2D.Double doubleLoc, String type) {
+		this.doubleLoc = doubleLoc;
+		this.type = type;
 	}
 
 	@Override
@@ -80,5 +84,9 @@ public abstract class Entity extends Shape {
 
 	public void setColisionable(boolean colisionable) {
 		isColisionable = colisionable;
+	}
+
+	public String getType() {
+		return type;
 	}
 }

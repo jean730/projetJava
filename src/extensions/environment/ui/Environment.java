@@ -52,6 +52,7 @@ public class Environment extends JFrame {
 		self.pack();
 		self.setVisible(true);
 		self.model.getAudio().play("background");
+		self.model.save("assets/save");
 		self.gameLoop();
 	}
 
