@@ -26,6 +26,9 @@ public class Player extends Entity {
         private int Right = 0;
         private int Jumping = 0;
         private int walkingDirection = 0;
+        
+        private int points = 0;
+        private double startx = this.getDoubleLoc().x;
  
 	private boolean isSprinting = false;
 	private Point2D.Double velocity = new Point2D.Double(0,0);
@@ -93,6 +96,11 @@ public class Player extends Entity {
 		}
 
 		this.setDoubleLoc(nextLoc);
+		int distance = (int) Math.abs(startx-doubleLoc.x);
+		if(points < distance) {
+			points = distance;
+		}
+		System.out.println(points);
 	}
 	
 	public Point2D.Double nextLoc(double dt) {
