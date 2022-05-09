@@ -100,7 +100,7 @@ public class Player extends Entity {
 		if(points < distance) {
 			points = distance;
 		}
-		System.out.println(points);
+                this.gameModel.getScoreShape().setText(String.valueOf(points));
 		
 		if (this.getLoc().x >= tileMap.getTextureMap()[0].length*tileMap.TILEWIDTH*0.9) {
 			System.out.println("hello");

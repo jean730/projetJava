@@ -3,6 +3,7 @@ package extensions.environment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.awt.Point;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import extensions.environment.entities.Player;
 import extensions.environment.entities.StaticEntity;
 import extensions.environment.ui.Animation;
 import graphics.shapes.Shape;
+import graphics.shapes.SText;
 import graphics.shapes.ShapeVisitor;
 
 import javax.imageio.IIOException;
@@ -32,6 +34,7 @@ public class GameModel extends Shape {
 	private Audio audio = new Audio();
 	private boolean isFinished = false;
 	private GameMain gameMain;
+        private SText scoreShape;
 
 	public GameModel(TileMap tileMap, Point2D.Double playerPos, GameMain gameMain) {
 		this.tileMap = tileMap;
@@ -59,6 +62,7 @@ public class GameModel extends Shape {
 		this.addEntity(pixie);
 		this.setPixie(pixie);
 		this.addPlayer(p);
+                this.scoreShape = new SText(new Point(900,400),"test");
 		Enemy q = new Enemy(new Point2D.Double(3900, 256), this);
 		this.addEntity(q);
 		this.gameMain = gameMain;
@@ -96,6 +100,10 @@ public class GameModel extends Shape {
 
 	public Pixie getPixie() {
 		return pixie;
+	}
+
+	public SText getScoreShape() {
+		return scoreShape;
 	}
 
 	public ArrayList<Entity> getEntities() {

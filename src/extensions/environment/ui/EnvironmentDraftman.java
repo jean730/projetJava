@@ -9,6 +9,7 @@ import extensions.environment.GameModel;
 import extensions.environment.TileMap;
 import extensions.environment.entities.Entity;
 import graphics.shapes.ui.ShapeDraftman;
+import graphics.shapes.SText;
 
 public class EnvironmentDraftman extends ShapeDraftman implements EnvironmentVisitor {
 
