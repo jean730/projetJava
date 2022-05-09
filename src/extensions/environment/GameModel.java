@@ -1,5 +1,6 @@
 package extensions.environment;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
@@ -19,6 +20,8 @@ import extensions.environment.entities.StaticEntity;
 import extensions.environment.ui.Animation;
 import graphics.shapes.Shape;
 import graphics.shapes.SText;
+import graphics.shapes.attributes.ColorAttributes;
+import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.ShapeVisitor;
 
 import javax.imageio.IIOException;
@@ -62,7 +65,12 @@ public class GameModel extends Shape {
 		this.addEntity(pixie);
 		this.setPixie(pixie);
 		this.addPlayer(p);
-                this.scoreShape = new SText(new Point(900,400),"test");
+                this.scoreShape = new SText(new Point(15,510),"test");
+                this.scoreShape.addAttributes(new ColorAttributes(false,false,Color.GRAY,Color.YELLOW));
+                FontAttributes fontAttributes = new FontAttributes();
+                fontAttributes.fontColor = Color.YELLOW;
+                this.scoreShape.addAttributes(fontAttributes);
+
 		Enemy q = new Enemy(new Point2D.Double(3900, 256), this);
 		this.addEntity(q);
 		this.gameMain = gameMain;
