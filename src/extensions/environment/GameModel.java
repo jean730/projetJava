@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import extensions.GameMain;
 import extensions.environment.audio.Audio;
 import extensions.environment.entities.Cloud;
 import extensions.environment.entities.Enemy;
@@ -29,9 +30,10 @@ public class GameModel extends Shape {
 	private ArrayList<Player> players = new ArrayList<>();
         private Pixie pixie;
 	private Audio audio = new Audio();
-	private boolean isFinished = true;
+	private boolean isFinished = false;
+	private GameMain gameMain;
 	
-	public GameModel(TileMap tileMap,Point2D.Double playerPos) {
+	public GameModel(TileMap tileMap,Point2D.Double playerPos, GameMain gameMain) {
         this.tileMap = tileMap;
         Player p = new Player(playerPos, this);
         StaticEntity fire = new StaticEntity(new Point2D.Double(3900,256),"assets/Details/fire.png", "Fire"); // Entité de test
@@ -51,6 +53,7 @@ public class GameModel extends Shape {
         this.addPlayer(p);
         Enemy q = new Enemy(new Point2D.Double(3900,256),this);
         this.addEntity(q);
+        this.gameMain = gameMain;
 	}
 
 	public GameModel(String path){
@@ -108,15 +111,24 @@ public class GameModel extends Shape {
 	}
 	
 	public void gameLoop() {
-		while (this.isFinished) {
+		while (!this.isFinished) {
 			this.applyPhysics();
 		}
+	}
+	
+	public void finish() {
+		isFinished = true;
 	}
 	
 	public void applyPhysics() {
 		this.updateTime();
 		entities.forEach((entity) -> entity.applyPhysics(tileMap , dt));
 		players.forEach((player)->player.applyColisions());
+		for (int i = 0; i < entities.size(); i++) {
+			if (this.entities.get(i).isDead()) {
+				this.entities.remove(i);
+			}
+		}
 	}
 	
 	@Override
@@ -173,5 +185,9 @@ public class GameModel extends Shape {
 		for(Entity entity:this.entities){
 			if (entity.getType()=="Pixie") this.setPixie((Pixie) entity);
 		}
+	}
+
+	public GameMain getGameMain() {
+		return gameMain;
 	}
 }

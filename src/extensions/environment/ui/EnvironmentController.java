@@ -24,6 +24,11 @@ public class EnvironmentController extends Controller {
 		if (evt.getKeyCode() == KeyEvent.VK_Q) {
 			this.gameModel.getPlayers().get(0).press(0);
 		}
+		if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			this.gameModel.save("assets/save");
+			this.gameModel.finish();
+			this.gameModel.getGameMain().rebuildMainMenu();
+		}
 	}
 
 	public void keyReleased(KeyEvent evt) {

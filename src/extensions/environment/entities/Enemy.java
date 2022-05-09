@@ -21,7 +21,7 @@ public class Enemy extends Entity {
 	private static final double WALKSTRENGTH = 600;
 	private static final double FRICTIONFACTOR = 0.9999;
 	private static final double FRICTIONMINSPEED = 10;
-
+	
         private int Left = 0;
         private int Right = 1;
         private int Jumping = 0;
@@ -169,12 +169,6 @@ public class Enemy extends Entity {
 		}
 	}
 
-	@Override
-	public void die() {
-		//System.out.println(this.toString()+" est mort!");
-		//System.exit(1);
-	}
-	
 	private void jump() {
 		this.velocity.y = -JUMPSTRENGTH;
 		this.gameModel.getAudio().play("jump");
@@ -204,4 +198,5 @@ public class Enemy extends Entity {
 		this.velocity.x = this.velocity.x + WALKSTRENGTH * factor * dt * walkingDirection;
 		if (Math.abs(this.velocity.x) > MAXWALKSPEED * factor) this.velocity.x = MAXWALKSPEED * factor * walkingDirection;
 	}
+
 }

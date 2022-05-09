@@ -21,6 +21,7 @@ public abstract class Entity extends Shape {
 	private Point2D.Double doubleLoc;
 	private boolean isColisionable=false;
 	private String type;
+	private boolean isDead = false;
 
 	
 	public Entity(Point2D.Double doubleLoc, Sprite sprite, String type) {
@@ -76,7 +77,13 @@ public abstract class Entity extends Shape {
 
 	public abstract void applyPhysics(TileMap tileMap, double dt);
 
-	public abstract void die();
+	public boolean isDead() {
+		return isDead;
+	}
+	
+	public void die() {
+		isDead = true;
+	}
 
 	public boolean isColisionable() {
 		return isColisionable;

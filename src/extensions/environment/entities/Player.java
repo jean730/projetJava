@@ -178,8 +178,9 @@ public class Player extends Entity {
 
 	@Override
 	public void die() {
-		//System.out.println(this.toString()+" est mort!");
-		//System.exit(1);
+		this.gameModel.finish();
+		this.gameModel.getGameMain().rebuildMainMenu();
+
 	}
 	
 	private void jump() {
