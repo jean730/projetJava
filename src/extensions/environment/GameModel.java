@@ -218,7 +218,7 @@ public class GameModel extends Shape {
 	}
 
 	public void addTiles() {
-		int[][] newTextureMap = mergeTextureMaps(tileMap.getTextureMap(), new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png", tileMap.getTextureMap()[0].length, tileMap.getTextureMap().length).getTileMap().getTextureMap());
+		int[][] newTextureMap = mergeTextureMaps(tileMap.getTextureMap(), new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png", 512, tileMap.getTextureMap().length,tileMap.getTextureMap()[0].length).getTileMap().getTextureMap());
 		if (newTextureMap!=null) {
 			tileMap.setTextureMap(newTextureMap);
 		}

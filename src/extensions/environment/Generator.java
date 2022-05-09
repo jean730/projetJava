@@ -8,13 +8,13 @@ public class Generator {
     private int getHeight(int x,int height){
             return height-(int)(10*SimplexNoise.noise(x/30.0,0)+15);
     }
-    public Generator(String tileSet,int width, int height){
+    public Generator(String tileSet,int width, int height,int xOffset){
         Random r = new Random();
         int[][] map = new int[height][width];
         for(int x=0;x<width;x++){
-            int h=getHeight(x,height);
-            int h_left=getHeight(x+1,height);
-            int h_right=getHeight(x-1,height);
+            int h=getHeight(x+xOffset,height);
+            int h_left=getHeight(x+1+xOffset,height);
+            int h_right=getHeight(x-1+xOffset,height);
             for(int y=0;y<height;y++){
                 if(y<h){
                     map[y][x] = -1;
@@ -27,7 +27,7 @@ public class Generator {
                         }
                         else if(h_left>h && h_right<=h){
                             map[y][x] = 46;
-                            for(int y2=y+1;y2<=getHeight(x+1,height);y2++){
+                            for(int y2=y+1;y2<=getHeight(x+xOffset+1,height);y2++){
                                 if(map[y2-1][x]==46+16)
                                     map[y2-1][x] = 46+13;
                                 map[y2][x] = 46+16;
@@ -36,7 +36,7 @@ public class Generator {
                         }
                         else if(h_left<=h && h_right>h){
                             map[y][x] = 44;
-                            for(int y2=y+1;y2<=getHeight(x-1,height);y2++){
+                            for(int y2=y+1;y2<=getHeight(x+xOffset-1,height);y2++){
                                 if(map[y2-1][x]==44+16)
                                     map[y2-1][x] = 44+12;
                                 map[y2][x] = 44+16;

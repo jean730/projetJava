@@ -63,7 +63,7 @@ public class GameMain extends JFrame {
 
 	public void newGame() {
 		this.getContentPane().remove(this.gview);
-		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap(),new Point2D.Double(4000,100),this);
+		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32,0).getTileMap(),new Point2D.Double(4000,100),this);
                 ((GameModel)model).getAudio().play("background");
                 TreeGenerator.generate((GameModel)this.model);
 		this.buildEnvironnement();
