@@ -41,9 +41,9 @@ public class Environment extends JFrame {
 	private void buildModel()
 	{
 
-		this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap(),new Point2D.Double(4000,100));
-                TreeGenerator.generate((GameModel)this.model);
-
+		/*this.model = new GameModel(new Generator("assets/GrassLand/Terrain/Grassland_Terrain_Tileset.png",512,32).getTileMap(),new Point2D.Double(4000,100));
+                TreeGenerator.generate((GameModel)this.model);*/
+		this.model = new GameModel("assets/save");
 	}
 
 	public static void main(String[] args)
@@ -52,6 +52,7 @@ public class Environment extends JFrame {
 		self.pack();
 		self.setVisible(true);
 		self.model.getAudio().play("background");
+		self.model.save("assets/save");
 		self.gameLoop();
 	}
 

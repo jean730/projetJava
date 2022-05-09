@@ -26,13 +26,16 @@ public class Player extends Entity {
         private int Right = 0;
         private int Jumping = 0;
         private int walkingDirection = 0;
+        
+        private int points = 0;
+        private double startx = this.getDoubleLoc().x;
  
 	private boolean isSprinting = false;
 	private Point2D.Double velocity = new Point2D.Double(0,0);
 	private GameModel gameModel;
 	
 	public Player(Point2D.Double loc,GameModel gameModel) {
-            super(loc);
+            super(loc,"Player");
             this.sprite = new Sprite("assets/Player/Player.png");
             sprite.registerAnimation("idle",new Animation(16,16,128,256,0,4,140));
             sprite.registerAnimation("left",new Animation(16,16,128,256,8,4,140));
@@ -93,6 +96,16 @@ public class Player extends Entity {
 		}
 
 		this.setDoubleLoc(nextLoc);
+		int distance = (int) Math.abs(startx-doubleLoc.x);
+		if(points < distance) {
+			points = distance;
+		}
+		System.out.println(points);
+		
+		if (this.getLoc().x >= tileMap.getTextureMap()[0].length*tileMap.TILEWIDTH*0.9) {
+			System.out.println("hello");
+			this.gameModel.addTiles();
+		}
 	}
 	
 	public Point2D.Double nextLoc(double dt) {
@@ -170,8 +183,9 @@ public class Player extends Entity {
 
 	@Override
 	public void die() {
-		//System.out.println(this.toString()+" est mort!");
-		//System.exit(1);
+		this.gameModel.finish();
+		this.gameModel.getGameMain().rebuildMainMenu();
+
 	}
 	
 	private void jump() {

@@ -8,8 +8,8 @@ import extensions.environment.ui.Animation;
 import extensions.environment.TileMap;
 
 public class StaticEntity extends Entity {
-	public StaticEntity(Point2D.Double loc,String fileName) {
-            super(loc);
+	public StaticEntity(Point2D.Double loc,String fileName, String type) {
+            super(loc,type);
             this.sprite = new Sprite(fileName);
 	}
 
