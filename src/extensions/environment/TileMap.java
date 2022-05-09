@@ -18,6 +18,10 @@ public class TileMap extends Shape{
 	
 	private BufferedImage tileSet;
 	private int[][] textureMap;
+	public void setTextureMap(int[][] textureMap) {
+		this.textureMap = textureMap;
+	}
+
 	private String tileSetPath;
 
 	public TileMap(String path, int[][] map){

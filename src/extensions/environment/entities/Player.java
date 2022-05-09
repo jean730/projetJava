@@ -101,6 +101,11 @@ public class Player extends Entity {
 			points = distance;
 		}
 		System.out.println(points);
+		
+		if (this.getLoc().x >= tileMap.getTextureMap()[0].length*tileMap.TILEWIDTH*0.9) {
+			System.out.println("hello");
+			this.gameModel.addTiles();
+		}
 	}
 	
 	public Point2D.Double nextLoc(double dt) {
